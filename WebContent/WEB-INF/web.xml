@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="http://java.sun.com/xml/ns/javaee" xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
+	id="WebApp_ID" version="2.5">
+	<display-name>GROUP7_WEB</display-name>
+	<welcome-file-list>
+		<welcome-file>index.html</welcome-file>
+		<welcome-file>index.htm</welcome-file>
+		<welcome-file>index.jsp</welcome-file>
+		<welcome-file>default.html</welcome-file>
+		<welcome-file>default.htm</welcome-file>
+		<welcome-file>default.jsp</welcome-file>
+	</welcome-file-list>
+	
+	<servlet>
+		<description />
+		<display-name>ControladorCliente</display-name>
+		<servlet-name>ControladorCliente</servlet-name>
+		<servlet-class>servlets.ControladorCliente</servlet-class>
+	</servlet>
+	
+	<servlet-mapping>
+		<servlet-name>ControladorCliente</servlet-name>
+		<url-pattern>/ControladorCliente</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<description />
+		<display-name>ControladorProveedor</display-name>
+		<servlet-name>ControladorProveedor</servlet-name>
+		<servlet-class>servlets.ControladorProveedor</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ControladorProveedor</servlet-name>
+		<url-pattern>/ControladorProveedor</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<description />
+		<display-name>ControladorCotizacion</display-name>
+		<servlet-name>ControladorCotizacion</servlet-name>
+		<servlet-class>servlets.ControladorCotizacion</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ControladorCotizacion</servlet-name>
+		<url-pattern>/ControladorCotizacion</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<description />
+		<display-name>ControladorPrecios</display-name>
+		<servlet-name>ControladorPrecios</servlet-name>
+		<servlet-class>servlets.ControladorPrecios</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ControladorPrecios</servlet-name>
+		<url-pattern>/ControladorPrecios</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<description />
+		<display-name>ControladorOrdenPedidos</display-name>
+		<servlet-name>ControladorOrdenPedidos</servlet-name>
+		<servlet-class>servlets.ControladorOrdenPedidos</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ControladorOrdenPedidos</servlet-name>
+		<url-pattern>/ControladorOrdenPedidos</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<description />
+		<display-name>ControladorOrdenCompras</display-name>
+		<servlet-name>ControladorOrdenCompras</servlet-name>
+		<servlet-class>servlets.ControladorOrdenCompras</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ControladorOrdenCompras</servlet-name>
+		<url-pattern>/ControladorOrdenCompras</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<description />
+		<display-name>ControladorRemitos</display-name>
+		<servlet-name>ControladorRemitos</servlet-name>
+		<servlet-class>servlets.ControladorRemitos</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ControladorRemitos</servlet-name>
+		<url-pattern>/ControladorRemitos</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<description />
+		<display-name>ControladorFacturas</display-name>
+		<servlet-name>ControladorFacturas</servlet-name>
+		<servlet-class>servlets.ControladorFacturas</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ControladorFacturas</servlet-name>
+		<url-pattern>/ControladorFacturas</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<description />
+		<display-name>ControladorRodamientos</display-name>
+		<servlet-name>ControladorRodamientos</servlet-name>
+		<servlet-class>servlets.ControladorRodamientos</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ControladorRodamientos</servlet-name>
+		<url-pattern>/ControladorRodamientos</url-pattern>
+	</servlet-mapping>
+</web-app>
