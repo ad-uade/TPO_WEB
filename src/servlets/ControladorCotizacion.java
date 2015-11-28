@@ -45,8 +45,7 @@ public class ControladorCotizacion extends HttpServlet {
 		} else if (request.getParameter("f2Cancelar") != null) {
 			action = "cancel";
 		} else if (request.getParameter("validarCliente") != null) {
-			ClienteVO c = AdministradorCliente.getInstancia()
-					.getCliente(Integer.valueOf(request.getParameter("clienteid")));
+			ClienteVO c = AdministradorCliente.getInstancia().getCliente(Long.valueOf(request.getParameter("clienteid")));
 			session.setAttribute("clienteSeleccionado", c);
 			action = "displaysolicitudes";
 		} else if (request.getParameter("f3Confirmar") != null) {
@@ -133,9 +132,8 @@ public class ControladorCotizacion extends HttpServlet {
 							items.add(it);
 						}
 					}
-					CotizacionVO coti = c; // Me copio la cotizacion original
-					coti.setItems(items); // Pero le seteo los nuevos items que
-											// fueron aprobados.
+					CotizacionVO coti = c;
+					coti.setItems(items);
 					AdministradorCotizacion.getInstancia().aprobarCotizacion(coti);
 				}
 			}

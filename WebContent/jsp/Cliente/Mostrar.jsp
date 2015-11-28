@@ -1,56 +1,38 @@
+<%@ include file="../../header.html"%>
 <%@page import="java.util.*"%>
-<%@page import="NegocioVO.ClienteVO"%>
-
+<%@page import="com.group7.business.ClienteVO"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
-
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
-	<head>
-		<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-		<title>Mostrar Cliente</title>
-	</head>
-	<body>
+<body>
 	<%
-	ClienteVO c = (ClienteVO)request.getAttribute("cliente");
+		ClienteVO c = (ClienteVO) request.getAttribute("cliente");
 	%>
-	<table>
-		<tr>
-			<td><b>Cliente:</b> 
-			</td>
-		</tr>
-		<tr>
-			<td><b>CUIL Cliente</b></td>
-			<td><%=c.getCUILCliente()%></td>
-		</tr>
-		<tr>
-			<td><b>Razon Social</b></td>
-			<td><%=c.getRazonSocial()%></td>
-		</tr>
-		<tr>
-			<td><b>Direccion</b></td>
-			<td><%=c.getDireccion()%></td>
-		</tr>
-		<tr>
-			<td><b>Telefono</b></td>
-			<td><%=c.getTelefono()%></td>
-		</tr>
-		<tr>
-			<td><b>Estado</b></td>
-			<td><%=c.isEstado()%></td>
-		</tr>
+	<section id="cart_items">
+		<div class="container">
+			<div class="breadcrumbs">
+				<ol class="breadcrumb">
+					<li><a href="#">Home</a></li>
+					<li class="active">Detalle de Clientes</li>
+				</ol>
+			</div>
 
-		<tr>
-			<td>
-			   <a href="ControladorCliente?action=edit&id=<%=c.getCUILCliente()%>&razonSocial=<%=c.getRazonSocial()%>&direccion=<%=c.getDireccion()%>&telefono=<%=c.getTelefono()%>">Editar Cliente</a>
-			</td>
-		</tr>
-		
-		<tr>
-			<td>
-			   <a href="ControladorCliente?action=baja&id=<%=c.getCUILCliente()%>">Dar de baja Cliente</a>
-			</td>
-		</tr>
-		</table>
-	</body>
-</html>
+			<div class="step-one">
+				<h2 class="heading">Cliente</h2>
+			</div>
+			<div class="checkout-options">
+				<h3><%=c.getRazonSocial()%></h3>
+				
+				<p><label>Cuil:</label> <%=c.getCuilCliente()%></p>
+				<p><label>Direccion: </label><%=c.getDireccion()%></p>
+				<p><label>Telefono: </label><%=c.getTelefono()%></p>
+				<ul class="nav">
+					<li><a href="ControladorCliente?action=edit&id=<%=c.getCuilCliente()%>">Editar</a></li>
+					<li><a
+						href="ControladorCliente?action=baja&id=<%=c.getCuilCliente()%>"><i class="fa fa-times"></i>Dar de baja Cliente</a></li>
+				</ul>
+			</div>
+			<!--/checkout-options-->
+		</div>
+	</section>
+</body>
+<%@ include file="../../footer.html"%>

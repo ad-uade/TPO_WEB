@@ -1,5 +1,4 @@
 package manager;
-
 import java.net.MalformedURLException;
 import java.rmi.Naming;
 import java.rmi.NotBoundException;
@@ -11,19 +10,23 @@ import com.group7.business.OrdenPedidoVO;
 import com.group7.business.RodamientoVO;
 import com.group7.remote.InterfazRemotaCPR;
 
-public class AdministradorOrdenCompras {
+
+public class AdministradorOrdenCompras
+{	
 	private InterfazRemotaCPR cpr;
 	private static AdministradorOrdenCompras instancia;
-
-	public static AdministradorOrdenCompras getInstancia() {
-		if (instancia == null)
+	
+	public static AdministradorOrdenCompras getInstancia()
+	{
+		if(instancia==null)
 			instancia = new AdministradorOrdenCompras();
 		return instancia;
 	}
-
-	private AdministradorOrdenCompras() {
+	
+	private AdministradorOrdenCompras()
+	{
 		try {
-			cpr = (InterfazRemotaCPR) Naming.lookup("TPO_Rodamientos2");
+			cpr = (InterfazRemotaCPR) Naming.lookup("AdministracionCPR");
 		} catch (MalformedURLException e) {
 			e.printStackTrace();
 		} catch (RemoteException e) {
@@ -34,48 +37,48 @@ public class AdministradorOrdenCompras {
 	}
 
 	public List<OrdenPedidoVO> getOrdenesPedidos() {
-		try {
+		try{
 			return cpr.listarOrdenesPedido();
-		} catch (RemoteException e) {
+		}catch(RemoteException e){
 			e.printStackTrace();
 		}
 		return null;
 	}
 
 	public OrdenPedidoVO getOrdenPedido(Integer nro) {
-		try {
+		try{
 			return cpr.dameOrdenVO(nro);
-		} catch (RemoteException e) {
+		}catch(RemoteException e){
 			e.printStackTrace();
 		}
 		return null;
 	}
 
 	public void generarOrdenDeCompra(OrdenPedidoVO op) {
-		try {
+		try{
 			cpr.generarOrdenDeCompra(op);
-		} catch (RemoteException e) {
+		}catch(RemoteException e){
 			e.printStackTrace();
 		}
 	}
 
-	public void generarOCManual(List<RodamientoVO> items, List<Integer> cantidades) {
-		try {
+	public void generarOCManual(List<RodamientoVO> items,List<Integer> cantidades) {
+		try{
 			cpr.generarOrdenDeCompraManual(items, cantidades);
-		} catch (RemoteException e) {
+		}catch(RemoteException e){
 			e.printStackTrace();
 		}
 	}
-
-	public void recepcionDeMercaderia(OrdenCompraVO oc) {
+	
+	public void recepcionDeMercaderia(OrdenCompraVO oc){
 		try {
 			cpr.recepcionDeMercaderia(oc);
 		} catch (RemoteException e) {
 			e.printStackTrace();
 		}
 	}
-
-	public OrdenCompraVO traerOC(Integer nro) {
+	
+	public OrdenCompraVO traerOC (Integer nro){
 		try {
 			return cpr.dameOrdenCompraVO(nro);
 		} catch (RemoteException e) {

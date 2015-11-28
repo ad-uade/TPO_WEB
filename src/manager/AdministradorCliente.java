@@ -11,7 +11,6 @@ import com.group7.business.OficinaVentasVO;
 import com.group7.remote.InterfazRemotaODV;
 
 public class AdministradorCliente {
-	
 	private InterfazRemotaODV oficinaVentas;
 	private static AdministradorCliente instancia;
 
@@ -23,7 +22,7 @@ public class AdministradorCliente {
 
 	private AdministradorCliente() {
 		try {
-			oficinaVentas = (InterfazRemotaODV) Naming.lookup("TPO_Rodamientos");
+			oficinaVentas = (InterfazRemotaODV) Naming.lookup("AdministracionODV");
 		} catch (MalformedURLException e) {
 			e.printStackTrace();
 		} catch (RemoteException e) {
@@ -42,7 +41,7 @@ public class AdministradorCliente {
 		return null;
 	}
 
-	public ClienteVO getCliente(Integer cuil) {
+	public ClienteVO getCliente(Long cuil) {
 		try {
 			return oficinaVentas.traerCliente(cuil);
 		} catch (RemoteException e) {
@@ -59,7 +58,7 @@ public class AdministradorCliente {
 		}
 	}
 
-	public boolean alta(Integer cuil, String razonSocial, String direccion, String telefono, OficinaVentasVO of) {
+	public boolean alta(Long cuil, String razonSocial, String direccion, String telefono, OficinaVentasVO of) {
 		try {
 			return oficinaVentas.altaCliente(razonSocial, cuil, direccion, telefono, of);
 		} catch (RemoteException e) {
@@ -70,7 +69,7 @@ public class AdministradorCliente {
 
 	public void baja(ClienteVO c) {
 		try {
-			oficinaVentas.bajaCliente(c.getCUILCliente());
+			oficinaVentas.bajaCliente(c.getCuilCliente());
 		} catch (RemoteException e) {
 			e.printStackTrace();
 		}

@@ -1,6 +1,6 @@
 <%@ page session="true"%>
-<%@page import="NegocioVO.CotizacionVO"%>
-<%@page import="NegocioVO.ItemCotizacionVO"%>
+<%@page import="com.group7.business.CotizacionVO"%>
+<%@page import="com.group7.business.ItemCotizacionVO"%>
 <%@ page import="java.util.*"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>

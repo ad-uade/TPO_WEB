@@ -1,5 +1,5 @@
 <%@page import="java.util.*"%>
-<%@page import="NegocioVO.SolicitudCotizacionVO"%>
+<%@page import="com.group7.business.SolicitudCotizacionVO"%>
 
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
@@ -29,7 +29,7 @@
 		</tr>
 		<tr>
 			<td><b>Cliente</b></td>
-			<td><%="CUIL: " + c.getCliente().getCUILCliente() + "- R.Social: " +c.getCliente().getRazonSocial()%></td>
+			<td><%="CUIL: " + c.getCliente().getCuilCliente() + "- R.Social: " +c.getCliente().getRazonSocial()%></td>
 		</tr>
 		<tr>
 			<td><b>Items</b></td>

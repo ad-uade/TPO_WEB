@@ -1,5 +1,4 @@
 package manager;
-
 import java.net.MalformedURLException;
 import java.rmi.Naming;
 import java.rmi.NotBoundException;
@@ -7,19 +6,22 @@ import java.rmi.RemoteException;
 
 import com.group7.remote.InterfazRemotaCPR;
 
-public class AdministradorRodamientos {
+public class AdministradorRodamientos
+{	
 	private InterfazRemotaCPR cpr;
 	private static AdministradorRodamientos instancia;
-
-	public static AdministradorRodamientos getInstancia() {
-		if (instancia == null)
+	
+	public static AdministradorRodamientos getInstancia()
+	{
+		if(instancia==null)
 			instancia = new AdministradorRodamientos();
 		return instancia;
 	}
-
-	private AdministradorRodamientos() {
+	
+	private AdministradorRodamientos()
+	{
 		try {
-			cpr = (InterfazRemotaCPR) Naming.lookup("TPO_Rodamientos2");
+			cpr = (InterfazRemotaCPR) Naming.lookup("AdministracionCPR");
 		} catch (MalformedURLException e) {
 			e.printStackTrace();
 		} catch (RemoteException e) {
@@ -28,14 +30,13 @@ public class AdministradorRodamientos {
 			e.printStackTrace();
 		}
 	}
-
-	public void alta(String codigoSFK, String codigoPieza, String descripcion, String paisOrigen, String marca,
-			boolean estado) {
+	
+	public  void alta(String codigoSFK, String codigoPieza, String descripcion, String paisOrigen, String marca, boolean estado) {
 		try {
 			cpr.altaRodamiento(codigoSFK, codigoPieza, descripcion, paisOrigen, marca, estado);
 		} catch (RemoteException e) {
 			e.printStackTrace();
 		}
 	}
-
+    
 }

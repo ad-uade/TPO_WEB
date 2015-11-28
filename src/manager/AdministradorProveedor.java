@@ -1,5 +1,4 @@
 package manager;
-
 import java.net.MalformedURLException;
 import java.rmi.Naming;
 import java.rmi.NotBoundException;
@@ -9,19 +8,22 @@ import java.util.List;
 import com.group7.business.ProveedorVO;
 import com.group7.remote.InterfazRemotaCPR;
 
-public class AdministradorProveedor {
+public class AdministradorProveedor
+{	
 	private InterfazRemotaCPR cpr;
 	private static AdministradorProveedor instancia;
-
-	public static AdministradorProveedor getInstancia() {
-		if (instancia == null)
+	
+	public static AdministradorProveedor getInstancia()
+	{
+		if(instancia==null)
 			instancia = new AdministradorProveedor();
 		return instancia;
 	}
-
-	private AdministradorProveedor() {
+	
+	private AdministradorProveedor()
+	{
 		try {
-			cpr = (InterfazRemotaCPR) Naming.lookup("TPO_Rodamientos2");
+			cpr = (InterfazRemotaCPR) Naming.lookup("AdministracionCPR");
 		} catch (MalformedURLException e) {
 			e.printStackTrace();
 		} catch (RemoteException e) {
@@ -30,8 +32,8 @@ public class AdministradorProveedor {
 			e.printStackTrace();
 		}
 	}
-
-	public List<ProveedorVO> getProveedores() {
+	
+	public  List<ProveedorVO> getProveedores() {
 		try {
 			return cpr.listarProveedores();
 		} catch (RemoteException e) {
@@ -40,7 +42,7 @@ public class AdministradorProveedor {
 		return null;
 	}
 
-	public ProveedorVO getProveedor(Integer cuil) {
+	public  ProveedorVO getProveedor(Integer cuil) {
 		try {
 			return cpr.traerProveedor(cuil);
 		} catch (RemoteException e) {
@@ -48,16 +50,16 @@ public class AdministradorProveedor {
 		}
 		return null;
 	}
-
-	public void actualizar(ProveedorVO p) {
+	
+	public  void actualizar(ProveedorVO p) {
 		try {
 			cpr.modificarProveedor(p);
 		} catch (RemoteException e) {
 			e.printStackTrace();
 		}
 	}
-
-	public boolean alta(Integer cuil, String razonSocial, String direccion, String telefono) {
+	
+	public  boolean alta(Integer cuil, String razonSocial, String direccion, String telefono) {
 		try {
 			return cpr.altaProveedor(razonSocial, cuil, direccion, telefono);
 		} catch (RemoteException e) {
@@ -66,12 +68,13 @@ public class AdministradorProveedor {
 		return false;
 	}
 
-	public void baja(ProveedorVO c) {
+	public  void baja(ProveedorVO c) {
 		try {
 			cpr.bajaProveedor(c.getCUILProveedor());
 		} catch (RemoteException e) {
 			e.printStackTrace();
 		}
 	}
-
+   
+    
 }

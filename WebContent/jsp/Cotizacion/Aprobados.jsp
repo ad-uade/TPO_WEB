@@ -1,5 +1,5 @@
 
-<%@page import="NegocioVO.RodamientoVO"%>
+<%@page import="com.group7.business.RodamientoVO"%>
 <%@ page import= "java.util.*"%>
 <%
  List<String> items = (List<String>) session.getAttribute("itemsElegidos");

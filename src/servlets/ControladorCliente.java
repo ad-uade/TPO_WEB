@@ -19,8 +19,7 @@ public class ControladorCliente extends HttpServlet {
 
 	private static final long serialVersionUID = 1087702007634924546L;
 
-	protected void doPost(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String action = request.getParameter("action");
 		String jspPage = "/index.html";
 
@@ -41,7 +40,7 @@ public class ControladorCliente extends HttpServlet {
 			jspPage = "jsp/Cliente/Alta.jsp";
 		} else if ("altaCliente".equals(action)) {
 			Integer nro = Integer.valueOf(request.getParameter("listadoOficinas"));
-			Integer cuil = Integer.valueOf(request.getParameter("CUILCliente"));
+			Long cuil = Long.valueOf(request.getParameter("CUILCliente"));
 			String razonSocial = request.getParameter("razonSocial");
 			String direccion = request.getParameter("direccion");
 			String telefono = request.getParameter("telefono");
@@ -57,17 +56,17 @@ public class ControladorCliente extends HttpServlet {
 			jspPage = "jsp/Cliente/MostrarLista.jsp";
 
 		} else if ("display".equals(action)) {
-			Integer id = Integer.valueOf(request.getParameter("id"));
+			Long id = Long.valueOf(request.getParameter("id"));
 			ClienteVO c = AdministradorCliente.getInstancia().getCliente(id);
 			request.setAttribute("cliente", c);
 			jspPage = "jsp/Cliente/Mostrar.jsp";
 		} else if ("edit".equals(action)) {
-			Integer id = Integer.valueOf(request.getParameter("id"));
+			Long id = Long.valueOf(request.getParameter("id"));
 			String razonSocial = request.getParameter("razonSocial");
 			String direccion = request.getParameter("direccion");
 			String telefono = request.getParameter("telefono");
 			ClienteVO c = new ClienteVO();
-			c.setCUILCliente(id);
+			c.setCuilCliente(id);
 			c.setRazonSocial(razonSocial);
 			c.setDireccion(direccion);
 			c.setTelefono(telefono);
@@ -75,18 +74,18 @@ public class ControladorCliente extends HttpServlet {
 			request.setAttribute("cliente", c);
 			jspPage = "jsp/Cliente/Editar.jsp";
 		} else if ("baja".equals(action)) {
-			Integer id = Integer.valueOf(request.getParameter("id"));
+			Long id = Long.valueOf(request.getParameter("id"));
 			ClienteVO c = AdministradorCliente.getInstancia().getCliente(id);
 			if (c != null) {
 				AdministradorCliente.getInstancia().baja(c);
 			}
 		} else if ("save".equals(action)) {
-			Integer id = Integer.valueOf(request.getParameter("id"));
+			Long id = Long.valueOf(request.getParameter("id"));
 			String razonSocial = request.getParameter("razonSocial");
 			String telefono = request.getParameter("telefono");
 			String direccion = request.getParameter("direccion");
 			ClienteVO c = new ClienteVO();
-			c.setCUILCliente(id);
+			c.setCuilCliente(id);
 			c.setRazonSocial(razonSocial);
 			c.setDireccion(direccion);
 			c.setTelefono(telefono);
@@ -103,8 +102,7 @@ public class ControladorCliente extends HttpServlet {
 		}
 	}
 
-	protected void doGet(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)throws ServletException, IOException {
 		System.out.println(request.toString());
 		doPost(request, response);
 	}

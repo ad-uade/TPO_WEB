@@ -1,19 +1,22 @@
 package beans;
 
 import java.io.Serializable;
+
+
  
 public class Cliente implements Serializable{
 	
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = -5499238085104522599L;
+	private static final long serialVersionUID = 1L;
 	private int CUILCliente;
 	private String razonSocial;
 	private String direccion;
 	private String telefono;
-	private String oficinaDeVentas;
+	private String ODV;//Lo pongo como String para no agregar todas.
 	private boolean estado;
+	
 	
 	public String getRazonSocial() {
 		return razonSocial;
@@ -23,11 +26,11 @@ public class Cliente implements Serializable{
 		this.razonSocial = razonSocial;
 	}
 
-	public int getCUILCliente() {
+	public int getCuilCliente() {
 		return CUILCliente;
 	}
 
-	public void setCUILCliente(int cUILCliente) {
+	public void setCuilCliente(int cUILCliente) {
 		CUILCliente = cUILCliente;
 	}
 
@@ -56,11 +59,11 @@ public class Cliente implements Serializable{
 	}
 
 	public void setODV(String oDV) {
-		oficinaDeVentas = oDV;
+		ODV = oDV;
 	}
 
 	public String getODV() {
-		return oficinaDeVentas;
+		return ODV;
 	}
 	
 	

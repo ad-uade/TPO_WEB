@@ -1,4 +1,4 @@
-<%@page import="NegocioVO.RemitoExteriorVO"%>
+<%@page import="com.group7.business.RemitoExteriorVO"%>
 <%@page import="java.util.*"%>
 
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
@@ -33,7 +33,7 @@
 		</tr>
 		<tr>
 			<td><b>Cliente</b></td>
-			<td><%="CUIL: " + r.getCliente().getCUILCliente()+ "- R.Social: " +r.getCliente().getRazonSocial()%></td>
+			<td><%="CUIL: " + r.getCliente().getCuilCliente()+ "- R.Social: " +r.getCliente().getRazonSocial()%></td>
 		</tr>
 		<tr>
 			<td><b>Items</b></td>

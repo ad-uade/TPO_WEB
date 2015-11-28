@@ -1,8 +1,8 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<%@page import="NegocioVO.CondicionVentaVO"%>
+<%@page import="com.group7.business.CondicionVentaVO"%>
 <%@ page session="true" %>
-<%@page import="NegocioVO.RodamientoVO"%>
-<%@page import="NegocioVO.ClienteVO"%>
+<%@page import="com.group7.business.RodamientoVO"%>
+<%@page import="com.group7.business.ClienteVO"%>
 <%@ page import= "java.util.*"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"    pageEncoding="ISO-8859-1"%>
 <html>
@@ -47,7 +47,7 @@ if( session.getAttribute("clienteSeleccionado")!=null)
 	ClienteVO c = (ClienteVO) session.getAttribute("clienteSeleccionado");
 	
 	cliente =c.getRazonSocial();
-	cuit =  String.valueOf( c.getCUILCliente());
+	cuit =  String.valueOf( c.getCuilCliente());
 }
 	
 %>

@@ -1,5 +1,4 @@
 package manager;
-
 import java.net.MalformedURLException;
 import java.rmi.Naming;
 import java.rmi.NotBoundException;
@@ -13,20 +12,22 @@ import com.group7.business.RodamientoVO;
 import com.group7.business.SolicitudCotizacionVO;
 import com.group7.remote.InterfazRemotaODV;
 
-public class AdministradorCotizacion {
-	
+public class AdministradorCotizacion
+{	
 	private InterfazRemotaODV oficinaVentas;
 	private static AdministradorCotizacion instancia;
-
-	public static AdministradorCotizacion getInstancia() {
-		if (instancia == null)
+	
+	public static AdministradorCotizacion getInstancia()
+	{
+		if(instancia==null)
 			instancia = new AdministradorCotizacion();
 		return instancia;
 	}
-
-	private AdministradorCotizacion() {
+	
+	private AdministradorCotizacion()
+	{
 		try {
-			oficinaVentas = (InterfazRemotaODV) Naming.lookup("TPO_Rodamientos");
+			oficinaVentas = (InterfazRemotaODV) Naming.lookup("AdministracionODV");
 		} catch (MalformedURLException e) {
 			e.printStackTrace();
 		} catch (RemoteException e) {
@@ -35,17 +36,16 @@ public class AdministradorCotizacion {
 			e.printStackTrace();
 		}
 	}
-
-	public void guardarSolicitudCotizacion(ClienteVO cliente, List<RodamientoVO> rodamientos, List<Integer> cantidades,
-			List<CondicionVentaVO> condiciones) {
+	
+	public  void guardarSolicitudCotizacion(ClienteVO cliente, List<RodamientoVO> rodamientos, List<Integer> cantidades, List<CondicionVentaVO> condiciones) {
 		try {
 			oficinaVentas.guardarSolicitudCotizacion(cliente, rodamientos, cantidades, condiciones);
 		} catch (RemoteException e) {
 			e.printStackTrace();
 		}
 	}
-
-	public boolean generarSolicitud(SolicitudCotizacionVO sc, Integer diasValidez) {
+	
+	public  boolean generarSolicitud(SolicitudCotizacionVO sc, Integer diasValidez) {
 		try {
 			return oficinaVentas.generarCotizacion(sc, diasValidez);
 		} catch (RemoteException e) {
@@ -53,10 +53,10 @@ public class AdministradorCotizacion {
 		}
 		return false;
 	}
-
-	public RodamientoVO getRodamiento(String SFK, String codigo) {
+	
+	public  RodamientoVO getRodamiento(String SFK, String codigo) {
 		try {
-			return oficinaVentas.obtenerRodamiento(SFK, codigo);
+			return oficinaVentas.obtenerRodamiento(SFK,codigo);
 		} catch (RemoteException e) {
 			e.printStackTrace();
 		}
@@ -71,7 +71,7 @@ public class AdministradorCotizacion {
 		}
 		return null;
 	}
-
+	
 	public List<SolicitudCotizacionVO> getSolicitudesCotizacion() {
 		try {
 			return oficinaVentas.listarSolicitudesCotizacion();
@@ -89,7 +89,7 @@ public class AdministradorCotizacion {
 		}
 		return null;
 	}
-
+	
 	public CotizacionVO getCotizacion(Integer nro) {
 		try {
 			return oficinaVentas.dameCotizacion(nro);
@@ -98,17 +98,17 @@ public class AdministradorCotizacion {
 		}
 		return null;
 	}
-
-	public void aprobarCotizacion(CotizacionVO cotizacion) {
-
+	
+	public void aprobarCotizacion (CotizacionVO cotizacion){
+		
 		try {
 			oficinaVentas.aprobarCotizacion(cotizacion);
 		} catch (RemoteException e) {
 			e.printStackTrace();
 		}
-
+		
 	}
-
+	
 	public List<CondicionVentaVO> getCondiciones() {
 		try {
 			return oficinaVentas.condiciones();
@@ -117,14 +117,19 @@ public class AdministradorCotizacion {
 		}
 		return null;
 	}
-
-	public CondicionVentaVO getCondicion(Integer nro) {
-		try {
+	
+	public CondicionVentaVO getCondicion(Integer nro){
+		try{
 			return oficinaVentas.dameCondicion(nro);
-		} catch (RemoteException e) {
+		}catch (RemoteException e){
 			e.printStackTrace();
 		}
 		return null;
 	}
+	
+	
 
+	
+   
+    
 }

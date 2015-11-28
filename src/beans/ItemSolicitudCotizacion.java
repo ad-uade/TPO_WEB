@@ -4,8 +4,10 @@ import java.io.Serializable;
 
 public class ItemSolicitudCotizacion implements Serializable{
 
-	private static final long serialVersionUID = 6417151180302557481L;
-	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private int nroSolicitudCotizacion;
 	private Rodamiento rodamiento;
 	private int cantidad;

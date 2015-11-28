@@ -19,6 +19,7 @@ import manager.AdministradorCotizacion;
 import manager.AdministradorOrdenCompras;
 
 public class ControladorOrdenCompras extends HttpServlet {
+
 	private List<RodamientoVO> items;
 	private List<Integer> cantidades;
 	private HttpSession session;
@@ -170,13 +171,7 @@ public class ControladorOrdenCompras extends HttpServlet {
 
 	private void popularCombos(HttpServletRequest request) {
 		List<RodamientoVO> rodamientos = new ArrayList<RodamientoVO>();
-		rodamientos = AdministradorCotizacion.getInstancia().getRodamientos(); // Nose
-																				// si
-																				// estara
-																				// bien
-																				// meter
-																				// otro
-																				// administrador.
+		rodamientos = AdministradorCotizacion.getInstancia().getRodamientos();
 		request.setAttribute("rodamientos", rodamientos);
 	}
 
@@ -186,7 +181,6 @@ public class ControladorOrdenCompras extends HttpServlet {
 			cantidades.clear();
 			session.invalidate();
 		}
-
 	}
 
 }

@@ -9,7 +9,7 @@ public class SolicitudCotizacion implements Serializable{
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 2992322355353224875L;
+	private static final long serialVersionUID = 1L;
 	private int nroSolicitudCotizacion;
 	private Date fecha;
 	private Cliente cliente;

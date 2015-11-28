@@ -1,4 +1,4 @@
-<%@page import="NegocioVO.CotizacionVO"%>
+<%@page import="com.group7.business.CotizacionVO"%>
 <%@page import="java.util.*"%>
 
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
@@ -34,7 +34,7 @@
 		</tr>
 		<tr>
 			<td><b>Cliente</b></td>
-			<td><%="CUIL: " + c.getCliente().getCUILCliente()+ "- R.Social: " +c.getCliente().getRazonSocial()%></td>
+			<td><%="CUIL: " + c.getCliente().getCuilCliente()+ "- R.Social: " +c.getCliente().getRazonSocial()%></td>
 		</tr>
 		<tr>
 			<td><b>Vinculado a la solicitud de cotizacion</b></td>

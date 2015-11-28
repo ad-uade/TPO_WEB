@@ -7,7 +7,7 @@ public class Rodamiento implements Serializable{
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 888416142894898028L;
+	private static final long serialVersionUID = 1L;
 	private String codigoSFK;
 	private String codigoPieza;
 	private String descripcion;

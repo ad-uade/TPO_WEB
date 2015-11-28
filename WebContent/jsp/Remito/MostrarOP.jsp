@@ -1,4 +1,4 @@
-<%@page import="NegocioVO.OrdenPedidoVO"%>
+<%@page import="com.group7.business.OrdenPedidoVO"%>
 <%@page import="java.util.*"%>
 
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
@@ -33,7 +33,7 @@
 		</tr>
 		<tr>
 			<td><b>Cliente</b></td>
-			<td><%="CUIL: " + op.getCliente().getCUILCliente()+ "- R.Social: " +op.getCliente().getRazonSocial()%></td>
+			<td><%="CUIL: " + op.getCliente().getCuilCliente()+ "- R.Social: " +op.getCliente().getRazonSocial()%></td>
 		</tr>
 		<tr>
 			<td><b>Items</b></td>
