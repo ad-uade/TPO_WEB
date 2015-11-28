@@ -1,13 +1,9 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <%@page import="com.group7.business.ProveedorVO"%>
 <%@page import="com.group7.business.RodamientoVO"%>
 <%@ page session="true" %>
 <%@ page import= "java.util.*"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"    pageEncoding="ISO-8859-1"%>
-<html>
-<head>
-	<title>Generar Lista de precios</title>
-	
+<%@ include file="../../header.html"%>
 <script type="text/javascript">
 function validar(){
 	if(document.form.precioVenta.value==''){
@@ -134,6 +130,5 @@ if (session.getAttribute("vigencia")!=null)
  <input type="submit" name="save" value="Generar lista de precios" >
  <input type="submit" name="cancelar" value="Cancelar" onclick="return window.confirm('Esta Seguro que desea cancelar?');" >
 </form>
-<a href="index.html" target="_self">Volver al index</a>
 </body>
-</html>
+<%@ include file="../../footer.html"%>

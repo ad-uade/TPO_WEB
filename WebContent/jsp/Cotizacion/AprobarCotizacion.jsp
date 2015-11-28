@@ -4,10 +4,7 @@
 <%@ page import="java.util.*"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
-<html>
-<head>
-<title>Aprobar Cotizacion</title>
-
+<%@ include file="../../header.html"%>
 <script type="text/javascript">
 
 function validar(){
@@ -30,7 +27,6 @@ function soloNumeros(evt){
 	}
 }
 </script>
-</head>
 <body>
 	<%
 		String fecha = "";
@@ -47,8 +43,6 @@ function soloNumeros(evt){
 			items = c.getItems();
 			nroCotizacion = String.valueOf(c.getNroCotizacion());
 		}
-		
-		
 	%>
 	<br>
 	<form name="form4" action="./ControladorCotizacion" method="POST"  onsubmit="return validar();">
@@ -102,11 +96,5 @@ function soloNumeros(evt){
 			<input type="submit" name="f4Confirmar" value="Confirmar aprobacion de cotizacion"> 
 			<input type="submit" name="f4Cancelar" value="Cancelar" onclick="return window.confirm('Esta Seguro que desea cancelar?');">
 	</form>
-	<a href="index.html" target="_self">Volver al index</a>
 </body>
-</html>
-
-
-
-
-
+<%@ include file="../../footer.html"%>

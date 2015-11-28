@@ -45,7 +45,7 @@
 								<p><%=aux.getODV().getSucursal()%></p>
 							</td>
 							<td class="cart_delete">
-								<a class="cart_quantity_delete" href=""><i class="fa fa-times"></i></a>
+								<a class="cart_quantity_delete" href="ControladorCliente?action=baja&id=<%=aux.getCuilCliente()%>"><i class="fa fa-times"></i></a>
 							</td>
 						</tr>
 					</tbody>

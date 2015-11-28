@@ -1,12 +1,8 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <%@ page session="true" %>
 <%@page import="com.group7.business.SolicitudCotizacionVO"%>
 <%@ page import= "java.util.*"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"    pageEncoding="ISO-8859-1"%>
-<html>
-<head>
-	<title>Generar Cotizacion</title>
-	
+<%@ include file="../../header.html"%>
 <script type="text/javascript">
 function validar(){
 	if(document.form3.diasValidez.value==''){
@@ -29,7 +25,6 @@ function soloNumeros(evt){
 	}
 }
 </script>
-</head>
 <body>
 <form name="form3" action="./ControladorCotizacion" method="POST" onsubmit="return validar();">
 <fieldset>
@@ -61,4 +56,4 @@ function soloNumeros(evt){
 </form>
 <a href="index.html" target="_self">Volver al index</a>
 </body>
-</html>
+<%@ include file="../../footer.html"%>

@@ -34,20 +34,20 @@ public class ControladorCliente extends HttpServlet {
 		if ("default".equals(action)) {
 			jspPage = "/index.html";
 		} else if ("showAlta".equals(action)) {
-			List<OficinaVentasVO> oficinas = new ArrayList<OficinaVentasVO>();
-			oficinas = AdministradorCliente.getInstancia().getOficinas();
-			request.setAttribute("oficinas", oficinas);
+			request.setAttribute("oficinas", AdministradorCliente.getInstancia().getOficinas());
 			jspPage = "jsp/Cliente/Alta.jsp";
 		} else if ("altaCliente".equals(action)) {
 			Integer nro = Integer.valueOf(request.getParameter("listadoOficinas"));
-			Long cuil = Long.valueOf(request.getParameter("CUILCliente"));
+			Long cuil = Long.valueOf(request.getParameter("CuilCliente"));
 			String razonSocial = request.getParameter("razonSocial");
 			String direccion = request.getParameter("direccion");
 			String telefono = request.getParameter("telefono");
 			OficinaVentasVO of = AdministradorCliente.getInstancia().getOficina(nro);
 			boolean bandera = AdministradorCliente.getInstancia().alta(cuil, razonSocial, direccion, telefono, of);
 			request.setAttribute("bandera", bandera);
-			jspPage = "jsp/Generales/Resultado.jsp";
+			ClienteVO c = AdministradorCliente.getInstancia().getCliente(cuil);
+			request.setAttribute("cliente", c);
+			jspPage = "jsp/Cliente/Mostrar.jsp";
 
 		} else if ("displaylist".equals(action)) {
 			List<ClienteVO> clientes = new ArrayList<ClienteVO>();
@@ -62,15 +62,17 @@ public class ControladorCliente extends HttpServlet {
 			jspPage = "jsp/Cliente/Mostrar.jsp";
 		} else if ("edit".equals(action)) {
 			Long id = Long.valueOf(request.getParameter("id"));
+			ClienteVO c = AdministradorCliente.getInstancia().getCliente(id);
+			request.setAttribute("cliente", c);
 			String razonSocial = request.getParameter("razonSocial");
 			String direccion = request.getParameter("direccion");
 			String telefono = request.getParameter("telefono");
-			ClienteVO c = new ClienteVO();
-			c.setCuilCliente(id);
-			c.setRazonSocial(razonSocial);
-			c.setDireccion(direccion);
-			c.setTelefono(telefono);
-			c.setEstado(true);
+			ClienteVO cliente = new ClienteVO();
+			cliente.setCuilCliente(id);
+			cliente.setRazonSocial(razonSocial);
+			cliente.setDireccion(direccion);
+			cliente.setTelefono(telefono);
+			cliente.setEstado(true);
 			request.setAttribute("cliente", c);
 			jspPage = "jsp/Cliente/Editar.jsp";
 		} else if ("baja".equals(action)) {
@@ -78,18 +80,24 @@ public class ControladorCliente extends HttpServlet {
 			ClienteVO c = AdministradorCliente.getInstancia().getCliente(id);
 			if (c != null) {
 				AdministradorCliente.getInstancia().baja(c);
+				
 			}
+			List<ClienteVO> clientes = new ArrayList<ClienteVO>();
+			clientes = AdministradorCliente.getInstancia().getClientes();
+			request.setAttribute("clientes", clientes);
+			jspPage = "jsp/Cliente/MostrarLista.jsp";
 		} else if ("save".equals(action)) {
 			Long id = Long.valueOf(request.getParameter("id"));
+			ClienteVO c = AdministradorCliente.getInstancia().getCliente(id);
 			String razonSocial = request.getParameter("razonSocial");
 			String telefono = request.getParameter("telefono");
 			String direccion = request.getParameter("direccion");
-			ClienteVO c = new ClienteVO();
-			c.setCuilCliente(id);
 			c.setRazonSocial(razonSocial);
 			c.setDireccion(direccion);
 			c.setTelefono(telefono);
 			AdministradorCliente.getInstancia().actualizar(c);
+			request.setAttribute("cliente", c);
+			jspPage = "jsp/Cliente/Editar.jsp";
 		}
 		dispatch(jspPage, request, response);
 	}

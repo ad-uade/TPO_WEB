@@ -1,4 +1,3 @@
-
 <%@page import="com.group7.business.RodamientoVO"%>
 <%@ page import= "java.util.*"%>
 <%

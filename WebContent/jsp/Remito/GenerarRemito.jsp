@@ -1,11 +1,7 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <%@page import="com.group7.business.OrdenPedidoVO"%>
 <%@ page import= "java.util.*"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"    pageEncoding="ISO-8859-1"%>
-<html>
-<head>
-	<title>Generar Remito</title>
-</head>
+<%@ include file="../../header.html"%>
 <body>
 <form name="form1" action="./ControladorRemitos" method="POST">
 <fieldset>
@@ -33,7 +29,5 @@
 	 <input type="submit" name="cancelar4" value="Cancelar" onclick="return window.confirm('Esta Seguro que desea cancelar?');" >
 </fieldset>
 </form>
-<br>
-<a href="index.html" target="_self">Volver al index</a>
 </body>
-</html>
+<%@ include file="../../footer.html"%>

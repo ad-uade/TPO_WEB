@@ -3,9 +3,7 @@
 <%@page import="com.group7.business.RodamientoVO"%>
 <%@ page import= "java.util.*"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"    pageEncoding="ISO-8859-1"%>
-<html>
-<head>
-	<title>Generar orden de compra manual</title>
+<%@ include file="../../header.html"%>
 <script type="text/javascript">
 function soloNumeros(evt){
 	if(window.event){
@@ -20,7 +18,6 @@ function soloNumeros(evt){
 	}
 }
 </script>
-</head>
 <body>
 <form name="form1" action="./ControladorOrdenCompras" method="POST">
 <fieldset>
@@ -64,4 +61,4 @@ function soloNumeros(evt){
  </form>
 <a href="index.html" target="_self">Volver al index</a>
 </body>
-</html>
+<%@ include file="../../footer.html"%>

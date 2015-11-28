@@ -62,19 +62,16 @@
 									<div class="form-group col-md-6">
 										<select name="listadoOficinas">
 											<%
-												OficinaVentasVO aux;
 												List<OficinaVentasVO> oficinas;
 												oficinas = (List<OficinaVentasVO>) request.getAttribute("oficinas");
 
 												if (oficinas != null) {
 
-													for (Iterator<OficinaVentasVO> r = oficinas.iterator(); r.hasNext();) {
-
-														aux = r.next();
+													for (OficinaVentasVO oficina : oficinas) {
 											%>
-											<option value="<%=aux.getIdOficina()%>"><%=aux.getSucursal()%></option>
+													<option value="<%=oficina.getIdOficina()%>"><%=oficina.getSucursal()%></option>
 											<%
-												}
+													}
 												}
 											%>
 										</select>

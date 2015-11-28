@@ -1,12 +1,7 @@
 <%@page import="java.util.*"%>
 <%@page import="com.group7.business.ProveedorVO"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"    pageEncoding="ISO-8859-1"%>
-
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Editar proveedor</title>
+<%@ include file="../../header.html"%>
 <script type="text/javascript">
 function validar(){
 	if(document.form.razonSocial.value==''){
@@ -76,4 +71,4 @@ function soloNumeros(evt){
 	</table>
 	</form>
 </body>
-</html>
+<%@ include file="../../footer.html"%>
