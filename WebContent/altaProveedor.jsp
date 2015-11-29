@@ -7,9 +7,9 @@
 				document.form.razonSocial.focus();
 				return false;
 			}
-			if (document.form.CUILCliente.value == '') {
+			if (document.form.cuilProveedor.value == '') {
 				alert('El campo cuilProveedor esta vacio');
-				document.form.CUILCliente.focus();
+				document.form.cuilProveedor.focus();
 				return false;
 			}
 			if (document.form.direccion.value == '') {
@@ -47,9 +47,7 @@
 						<div class="contact-form">
 							<h2 class="title text-center">Alta de Proveedor</h2>
 							<div class="status alert alert-success" style="display: none"></div>
-							<form id="main-contact-form" class="contact-form row"
-								name="contact-form" action="jsp/Proveedor/registroProveedor.jsp"
-								method="post" onsubmit="return validar();">
+							<form id="main-contact-form" class="contact-form row" action="./ControladorProveedor" method="post" onsubmit="return validar();">
 								<div class="form-group col-md-6">
 									<input type="text" name="razonSocial" class="form-control"
 										placeholder="Razon Social"></input>
@@ -61,7 +59,7 @@
 								</div>
 								<div class="form-group col-md-12">
 									<input type="text" name="direccion" class="form-control"
-										required="required" placeholder="Direccion"></input>
+										placeholder="Direccion"></input>
 								</div>
 								<div class="form-group col-md-12">
 									<input type="text" onkeypress="return soloNumeros(event)"
@@ -69,6 +67,7 @@
 										placeholder="Telefono"></input>
 								</div>
 								<div class="form-group col-md-12">
+									<input type="hidden" name="action" value="alta"></input>
 									<input type="submit" name="submit"
 										class="btn btn-primary pull-right" value="Dar de alta"></input>
 								</div>

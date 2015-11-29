@@ -87,7 +87,7 @@ public class ControladorPrecios extends HttpServlet {
             		if (items.size()>0 && precios.size()>0){
 		            	ProveedorVO p = (ProveedorVO) session.getAttribute("proveedorSeleccionado");
 		                String tipo = (String) session.getAttribute("tipo");
-		                String vigencia = (String)session.getAttribute("vigencia");
+		                Integer vigencia = Integer.getInteger((String)session.getAttribute("vigencia"));
 		                Float descuento = (Float.parseFloat((String) session.getAttribute("descuento")));
 						AdministradorPrecios.getInstancia().armarListaDePrecios(p, items, precios, tipo, vigencia, descuento);
 						cerrar();

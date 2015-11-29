@@ -34,41 +34,52 @@ function soloNumeros(evt){
 	}
 }
 </script>
-</head>
 <body>
 	<%
-	ProveedorVO p = (ProveedorVO)request.getAttribute("proveedor");
-	String successMsg = "";
-	if(!String.valueOf(request.getAttribute("successMsg")).equals("") && request.getAttribute("successMsg")!=null){
-		successMsg=String.valueOf(request.getAttribute("successMsg"));
-	}
-	
+		ProveedorVO p = (ProveedorVO)request.getAttribute("proveedor");
+		String successMsg = "";
+		if(!String.valueOf(request.getAttribute("successMsg")).equals("") && request.getAttribute("successMsg")!=null){
+			successMsg=String.valueOf(request.getAttribute("successMsg"));
+		}
 	%>
-	<form name="form" action="ControladorProveedor?action=save&id=<%=p.getCuilProveedor()%>" method="post" onsubmit="return validar();">
-	<table>
-	<tr>
-		<td><b>Razon Social:</b></td>
-	  <td><input type="text" name="razonSocial" value="<%=p.getRazonSocial()%>" size=20></td>
-	</tr>
-	<tr>
-		<td><b>Direccion:</b> </td>
-	  <td><input type="text" name="direccion" value="<%=p.getDireccion()%>" size=25></td>
-	</tr>
-	<tr>
-		<td><b>Telefono:</b> </td>
-	  <td><input type="text" name="telefono" value="<%=p.getTelefono()%>" size=10 onkeypress="return soloNumeros(event)"></td>
-	</tr>
-	<tr>
-		<td><input type="submit" value="editar proveedor"></td>
-		<td>
-		<strong style="color: green;">
-		
-		<%=successMsg%>
-		
-		</strong>
-		</td>
-	</tr>
-	</table>
-	</form>
+	<section id="cart_items">
+		<div class="container">
+			<div class="breadcrumbs">
+				<ol class="breadcrumb">
+					<li><a href="#">Home</a></li>
+					<li class="active">Editar Proveedor</li>
+				</ol>
+			</div>
+
+			<div class="step-one">
+				<h2 class="heading">Proveedor <%=p.getCuilProveedor()%></h2>
+			</div>
+			<div class="checkout-options">
+			<form name="form" action="ControladorProveedor?action=save&id=<%=p.getCuilProveedor()%>" method="post" onsubmit="return validar();">
+			<div class="form-group col-md-6">
+				<p>Razon Social</p>
+				<input type="text" name="razonSocial" class="form-control" required="required" value="<%=p.getRazonSocial()%>"></input>
+			</div>
+			<div class="form-group col-md-6">
+				<p>Direccion</p>
+				<input type="text" name="direccion" class="form-control" required="required" value="<%=p.getDireccion()%>"></input>
+			</div>
+			<div class="form-group col-md-6">
+				<p>Telefono</p>
+				<input type="text" name="telefono" class="form-control" required="required" onkeypress="return soloNumeros(event)" value="<%=p.getTelefono()%>"></input>
+			</div>
+				<div class="form-group col-md-12">
+						<input type="submit" name="submit" class="btn btn-primary pull-right" value="Guardar"></input>
+				</div>
+				<strong style="color: green;">
+				<%=successMsg%>
+				</strong>
+			</form>	
+			</div>
+			<!--/checkout-options-->
+		</div>
+	</section>
 </body>
+
+
 <%@ include file="../../footer.html"%>

@@ -42,6 +42,8 @@ public class ControladorProveedor extends HttpServlet {
 			jspPage = "jsp/Proveedor/Mostrar.jsp";
 		} else if ("edit".equals(action)) {
 			Long id = Long.valueOf(request.getParameter("id"));
+			ProveedorVO c = AdministradorProveedor.getInstancia().getProveedor(id);
+			request.setAttribute("proveedor", c);
 			String razonSocial = request.getParameter("razonSocial");
 			String direccion = request.getParameter("direccion");
 			String telefono = request.getParameter("telefono");
@@ -51,7 +53,7 @@ public class ControladorProveedor extends HttpServlet {
 			p.setDireccion(direccion);
 			p.setTelefono(telefono);
 			p.setEstado(true);
-			request.setAttribute("proveedor", p);
+			request.setAttribute("proveedor", c);
 			jspPage = "jsp/Proveedor/Editar.jsp";
 		} else if ("baja".equals(action)) {
 			Long id = Long.valueOf(request.getParameter("id"));
@@ -59,8 +61,12 @@ public class ControladorProveedor extends HttpServlet {
 			if (p != null) {
 				AdministradorProveedor.getInstancia().baja(p);
 			}
+			List<ProveedorVO> proveedores = new ArrayList<ProveedorVO>();
+			proveedores = AdministradorProveedor.getInstancia().getProveedores();
+			request.setAttribute("proveedores", proveedores);
+			jspPage = "jsp/Cliente/MostrarLista.jsp";
 		} else if ("alta".equals(action)) {
-			Long cuil = Long.valueOf(request.getParameter("id"));
+			Long cuil = Long.valueOf(request.getParameter("cuilProveedor"));
 			String razonSocial = request.getParameter("razonSocial");
 			String direccion = request.getParameter("direccion");
 			String telefono = request.getParameter("telefono");
@@ -69,15 +75,17 @@ public class ControladorProveedor extends HttpServlet {
 			jspPage = "jsp/Generales/Resultado.jsp";
 		} else if ("save".equals(action)) {
 			Long id = Long.valueOf(request.getParameter("id"));
+			ProveedorVO p = AdministradorProveedor.getInstancia().getProveedor(id);
 			String razonSocial = request.getParameter("razonSocial");
 			String telefono = request.getParameter("telefono");
 			String direccion = request.getParameter("direccion");
-			ProveedorVO c = new ProveedorVO();
-			c.setCuilProveedor(id);
-			c.setRazonSocial(razonSocial);
-			c.setDireccion(direccion);
-			c.setTelefono(telefono);
-			AdministradorProveedor.getInstancia().actualizar(c);
+			p.setCuilProveedor(id);
+			p.setRazonSocial(razonSocial);
+			p.setDireccion(direccion);
+			p.setTelefono(telefono);
+			AdministradorProveedor.getInstancia().actualizar(p);
+			request.setAttribute("proveedor", p);
+			jspPage = "jsp/Proveedor/Editar.jsp";
 		}
 		dispatch(jspPage, request, response);
 	}

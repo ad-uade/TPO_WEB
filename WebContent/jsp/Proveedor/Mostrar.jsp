@@ -4,47 +4,43 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <%@ include file="../../header.html"%>
-	<body>
+<body>
 	<%
-	ProveedorVO p = (ProveedorVO)request.getAttribute("proveedor");
+		ProveedorVO p = (ProveedorVO) request.getAttribute("proveedor");
 	%>
-	<table>
-		<tr>
-			<td><b>Proveedor:</b> 
-			</td>
-		</tr>
-		<tr>
-			<td><b>CUIL Proveedor</b></td>
-			<td><%=p.getCuilProveedor()%></td>
-		</tr>
-		<tr>
-			<td><b>Razon Social</b></td>
-			<td><%=p.getRazonSocial()%></td>
-		</tr>
-		<tr>
-			<td><b>Direccion</b></td>
-			<td><%=p.getDireccion()%></td>
-		</tr>
-		<tr>
-			<td><b>Telefono</b></td>
-			<td><%=p.getTelefono()%></td>
-		</tr>
-		<tr>
-			<td><b>Estado</b></td>
-			<td><%=p.isEstado()%></td>
-		</tr>
+	<section id="cart_items">
+	<div class="container">
+		<div class="breadcrumbs">
+			<ol class="breadcrumb">
+				<li><a href="#">Home</a></li>
+				<li class="active">Detalle de Clientes</li>
+			</ol>
+		</div>
 
-		<tr>
-			<td>
-			   <a href="ControladorProveedor?action=edit&id=<%=p.getCuilProveedor()%>&razonSocial=<%=p.getRazonSocial()%>&direccion=<%=p.getDireccion()%>&telefono=<%=p.getTelefono()%>">Editar Proveedor</a>
-			</td>
-		</tr>
-		
-		<tr>
-			<td>
-			   <a href="ControladorProveedor?action=baja&id=<%=p.getCuilProveedor()%>">Dar de baja Proveedor</a>
-			</td>
-		</tr>
-		</table>
-	</body>
+		<div class="step-one">
+			<h2 class="heading">Cliente</h2>
+		</div>
+		<div class="checkout-options">
+			<h3><%=p.getRazonSocial()%></h3>
+
+			<p>
+				<label>Cuil:</label>
+				<%=p.getCuilProveedor()%></p>
+			<p>
+				<label>Direccion: </label><%=p.getDireccion()%></p>
+			<p>
+				<label>Telefono: </label><%=p.getTelefono()%></p>
+			<ul class="nav">
+				<li>
+					<a href="ControladorProveedor?action=edit&id=<%=p.getCuilProveedor()%>">Editar</a>
+				</li>
+				<li>
+					<a href="ControladorProveedor?action=baja&id=<%=p.getCuilProveedor()%>"><i class="fa fa-times"></i>Dar de baja</a>
+				</li>
+			</ul>
+		</div>
+		<!--/checkout-options-->
+	</div>
+	</section>
+</body>
 <%@ include file="../../footer.html"%>

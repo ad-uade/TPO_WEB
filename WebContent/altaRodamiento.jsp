@@ -19,8 +19,6 @@
         	}
         }
 </script>
-</head>
-<body>
 <fieldset>
 			<div id="contact-page" class="container">
 				<div class="bg">
@@ -29,15 +27,15 @@
 							<div class="contact-form">
 								<h2 class="title text-center">Alta de Rodamiento</h2>
 								<div class="status alert alert-success" style="display: none"></div>
-								<form id="main-contact-form" class="contact-form row" name="contact-form" action="./ControladorRodamientos" method="post" onsubmit="return validar();">
+								<form enctype="multipart/form-data" id="main-contact-form" class="contact-form row" action="./ControladorRodamientos" method="post" onsubmit="return validar();">
 									
 									<div class="form-group col-md-6">
 									<p><b>Path XML</b></p>
-										<input type="file" name="path">
+										<input type="file" name="path"></input>
 									</div>
 									<div class="form-group col-md-12">
-										<input type="submit" name="Submit" value="Procesar" class="btn btn-primary pull-right" onclick="javascript:return validarPath();">
-										<input type="hidden" name="action" value="procesar">
+										<input type="submit" name="Submit" value="Procesar" class="btn btn-primary pull-right" onclick="javascript:return validarPath();"></input>
+										<input type="hidden" name="action" value="procesar"></input>
 									</div>
 								</form>
 							</div>

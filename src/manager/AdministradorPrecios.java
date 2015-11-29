@@ -53,7 +53,7 @@ public class AdministradorPrecios
 		return null;
 	}
 	
-	public  void armarListaDePrecios(ProveedorVO proveedor, List<RodamientoVO> rodamientos, List<Float> precios, String tipo, String vigencia, float descuento) {
+	public  void armarListaDePrecios(ProveedorVO proveedor, List<RodamientoVO> rodamientos, List<Float> precios, String tipo, Integer vigencia, float descuento) {
 		try {
 			cpr.armarListaDePrecios(proveedor, rodamientos, precios, tipo, vigencia, descuento);
 		} catch (RemoteException e) {
