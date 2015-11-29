@@ -45,7 +45,7 @@ function soloNumeros(evt){
 		}
 	%>
 	<br>
-	<form name="form4" action="./ControladorCotizacion" method="POST"  onsubmit="return validar();">
+	<form name="form4" action="./ControladorCotizacion" method="post"  onsubmit="return validar();">
 		<fieldset>
 			<legend>Ingrese el numero de Cotizacion</legend>
 			<table>
@@ -91,7 +91,7 @@ function soloNumeros(evt){
 </fieldset>
 </form>	
 <jsp:include page="Aprobados.jsp" flush="true" />
-	<form name="form7" action="./ControladorCotizacion" method="POST">
+	<form name="form7" action="./ControladorCotizacion" method="post">
 		<br> <input type="hidden" name="action" value="save"> 
 			<input type="submit" name="f4Confirmar" value="Confirmar aprobacion de cotizacion"> 
 			<input type="submit" name="f4Cancelar" value="Cancelar" onclick="return window.confirm('Esta Seguro que desea cancelar?');">

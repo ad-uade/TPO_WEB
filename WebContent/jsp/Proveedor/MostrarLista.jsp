@@ -25,7 +25,7 @@
 		%>
 		<tr>
 			<td><a
-				href="ControladorProveedor?action=display&id=<%=aux.getCUILProveedor()%>"><%=aux.getCUILProveedor()%></a>
+				href="ControladorProveedor?action=display&id=<%=aux.getCuilProveedor()%>"><%=aux.getCuilProveedor()%></a>
 			</td>
 			<td><%=aux.getRazonSocial()%></td>
 			<td><%=aux.getDireccion()%></td>

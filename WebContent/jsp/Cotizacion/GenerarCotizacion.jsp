@@ -26,7 +26,7 @@ function soloNumeros(evt){
 }
 </script>
 <body>
-<form name="form3" action="./ControladorCotizacion" method="POST" onsubmit="return validar();">
+<form name="form3" action="./ControladorCotizacion" method="post" onsubmit="return validar();">
 <fieldset>
 <legend>Cabecera Cotizacion</legend>
 	Solicitudes de Cotizacion:

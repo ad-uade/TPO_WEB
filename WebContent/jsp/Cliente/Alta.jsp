@@ -40,7 +40,7 @@
 							<div class="contact-form">
 								<h2 class="title text-center">Datos de cliente</h2>
 								<div class="status alert alert-success" style="display: none"></div>
-								<form id="main-contact-form" class="contact-form row" name="contact-form" action="./ControladorCliente" method="POST" onsubmit="return validar();">
+								<form id="main-contact-form" class="contact-form row" name="contact-form" action="./ControladorCliente" method="post" onsubmit="return validar();">
 									<div class="form-group col-md-6">
 										<input type="text" name="razonSocial" class="form-control"
 											required="required" placeholder="Razon Social">

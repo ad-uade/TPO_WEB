@@ -3,7 +3,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"    pageEncoding="ISO-8859-1"%>
 <%@ include file="../../header.html"%>
 <body>
-<form name="form1" action="./ControladorFacturas" method="POST">
+<form name="form1" action="./ControladorFacturas" method="post">
 <fieldset>
 <legend>Seleccione el remito</legend>
 	<select name="listado">

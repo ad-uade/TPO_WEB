@@ -42,7 +42,7 @@ public class AdministradorProveedor
 		return null;
 	}
 
-	public  ProveedorVO getProveedor(Integer cuil) {
+	public  ProveedorVO getProveedor(Long cuil) {
 		try {
 			return cpr.traerProveedor(cuil);
 		} catch (RemoteException e) {
@@ -59,7 +59,7 @@ public class AdministradorProveedor
 		}
 	}
 	
-	public  boolean alta(Integer cuil, String razonSocial, String direccion, String telefono) {
+	public  boolean alta(Long cuil, String razonSocial, String direccion, String telefono) {
 		try {
 			return cpr.altaProveedor(razonSocial, cuil, direccion, telefono);
 		} catch (RemoteException e) {
@@ -70,7 +70,7 @@ public class AdministradorProveedor
 
 	public  void baja(ProveedorVO c) {
 		try {
-			cpr.bajaProveedor(c.getCUILProveedor());
+			cpr.bajaProveedor(c.getCuilProveedor());
 		} catch (RemoteException e) {
 			e.printStackTrace();
 		}

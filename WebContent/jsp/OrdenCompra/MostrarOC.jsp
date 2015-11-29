@@ -21,7 +21,7 @@
 		</tr>
 		<tr>
 			<td><b>Proveedor</b></td>
-			<td><%="CUIL: " + op.getProveedor().getCUILProveedor()+ "- R.Social: " +op.getProveedor().getRazonSocial()%></td>
+			<td><%="CUIL: " + op.getProveedor().getCuilProveedor()+ "- R.Social: " +op.getProveedor().getRazonSocial()%></td>
 		</tr>
 		<tr>
 			<td><b>Items</b></td>

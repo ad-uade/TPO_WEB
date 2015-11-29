@@ -15,7 +15,7 @@
 		</tr>
 		<tr>
 			<td><b>CUIL Proveedor</b></td>
-			<td><%=p.getCUILProveedor()%></td>
+			<td><%=p.getCuilProveedor()%></td>
 		</tr>
 		<tr>
 			<td><b>Razon Social</b></td>
@@ -36,13 +36,13 @@
 
 		<tr>
 			<td>
-			   <a href="ControladorProveedor?action=edit&id=<%=p.getCUILProveedor()%>&razonSocial=<%=p.getRazonSocial()%>&direccion=<%=p.getDireccion()%>&telefono=<%=p.getTelefono()%>">Editar Proveedor</a>
+			   <a href="ControladorProveedor?action=edit&id=<%=p.getCuilProveedor()%>&razonSocial=<%=p.getRazonSocial()%>&direccion=<%=p.getDireccion()%>&telefono=<%=p.getTelefono()%>">Editar Proveedor</a>
 			</td>
 		</tr>
 		
 		<tr>
 			<td>
-			   <a href="ControladorProveedor?action=baja&id=<%=p.getCUILProveedor()%>">Dar de baja Proveedor</a>
+			   <a href="ControladorProveedor?action=baja&id=<%=p.getCuilProveedor()%>">Dar de baja Proveedor</a>
 			</td>
 		</tr>
 		</table>

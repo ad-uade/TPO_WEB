@@ -33,7 +33,7 @@
   <td><%= cond.getNroCondicion()%></td>
   <td><%= cantidad%></td>
   <td>
-  <form name="deleteForm" action="./ControladorCotizacion" method="POST"> 
+  <form name="deleteForm" action="./ControladorCotizacion" method="post"> 
   	<input type="submit" value="Eliminar">
    <input type="hidden" name= "delindex" value='<%= i %>'>
    <input type="hidden" name="action" value="delete">

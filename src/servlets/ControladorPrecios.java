@@ -51,7 +51,7 @@ public class ControladorPrecios extends HttpServlet {
             }
             else if(request.getParameter("validarProveedor")!=null)
             {
-            	ProveedorVO p = AdministradorProveedor.getInstancia().getProveedor(Integer.valueOf(request.getParameter("proveedorid")));
+            	ProveedorVO p = AdministradorProveedor.getInstancia().getProveedor(Long.valueOf(request.getParameter("proveedorid")));
             	session.setAttribute("proveedorSeleccionado", p);
             	action = "displayinterface";
             }

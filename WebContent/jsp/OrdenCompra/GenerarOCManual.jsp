@@ -19,7 +19,7 @@ function soloNumeros(evt){
 }
 </script>
 <body>
-<form name="form1" action="./ControladorOrdenCompras" method="POST">
+<form name="form1" action="./ControladorOrdenCompras" method="post">
 <fieldset>
 	<legend>Seleccione los items que lo van a componer</legend>
 	Rodamientos:
@@ -53,7 +53,7 @@ function soloNumeros(evt){
 </form>	
 <jsp:include page="Carrito.jsp" flush="true" />
 <br>
-<form name="form2" action="./ControladorOrdenCompras" method="POST">
+<form name="form2" action="./ControladorOrdenCompras" method="post">
 
  <input type="hidden" name="action" value="save">
  <input type="submit" name="f2Confirmar" value="Confirmar Orden de Compra" >

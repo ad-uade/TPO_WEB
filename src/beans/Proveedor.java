@@ -4,24 +4,13 @@ import java.io.Serializable;
 
 public class Proveedor implements Serializable{
 
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 5544768418483223027L;
 	
-	private int CUILProveedor;
+	private Long cuilProveedor;
 	private String razonSocial;
 	private String direccion;
 	private String telefono;
 	private boolean estado;
-	
-	public int getCUILProveedor() {
-		return CUILProveedor;
-	}
-
-	public void setCUILProveedor(int cUILProveedor) {
-		CUILProveedor = cUILProveedor;
-	}
 
 	public String getRazonSocial() {
 		return razonSocial;
@@ -54,7 +43,19 @@ public class Proveedor implements Serializable{
 	public void setEstado(boolean estado) {
 		this.estado = estado;
 	}
-	
-	
+
+	/**
+	 * @return the cUILProveedor
+	 */
+	public Long getCuilProveedor() {
+		return cuilProveedor;
+	}
+
+	/**
+	 * @param cUILProveedor the cUILProveedor to set
+	 */
+	public void setCuilProveedor(Long cUILProveedor) {
+		cuilProveedor = cUILProveedor;
+	}
 
 }

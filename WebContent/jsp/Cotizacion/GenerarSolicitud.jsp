@@ -50,7 +50,7 @@ if( session.getAttribute("clienteSeleccionado")!=null)
 
 <br>
 
-<form name="form1" action="./ControladorCotizacion" method="POST"  onsubmit="return validar();">
+<form name="form1" action="./ControladorCotizacion" method="post"  onsubmit="return validar();">
 <fieldset>
 <legend>Cabecera Solicitud Cotizacion</legend>
 	<table>
@@ -116,7 +116,7 @@ if( session.getAttribute("clienteSeleccionado")!=null)
 </form>	
 <jsp:include page="Carrito.jsp" flush="true" />
 <br>
-<form name="form2" action="./ControladorCotizacion" method="POST">
+<form name="form2" action="./ControladorCotizacion" method="post">
 
  <input type="hidden" name="action" value="save">
  <input type="submit" name="f2Confirmar" value="Confirmar solicitud" >

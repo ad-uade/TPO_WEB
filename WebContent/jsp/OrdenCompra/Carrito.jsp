@@ -28,7 +28,7 @@
   <td><%= it.getPaisOrigen()%></td>
   <td><%= cantidad%></td>
   <td>
-  <form name="deleteForm" action="./ControladorOrdenCompras" method="POST"> 
+  <form name="deleteForm" action="./ControladorOrdenCompras" method="post"> 
   	<input type="submit" value="Eliminar">
    <input type="hidden" name= "delindex" value='<%= i %>'>
    <input type="hidden" name="action" value="delete">

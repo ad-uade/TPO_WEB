@@ -44,7 +44,7 @@ public class AdministradorPrecios
 		return null;
 	}
 
-	public  ProveedorVO getProveedor(Integer cuil) {
+	public  ProveedorVO getProveedor(Long cuil) {
 		try {
 			return cpr.traerProveedor(cuil);
 		} catch (RemoteException e) {

@@ -60,7 +60,7 @@ if( session.getAttribute("proveedorSeleccionado")!=null)
 	ProveedorVO p = (ProveedorVO) session.getAttribute("proveedorSeleccionado");
 	
 	proveedor =p.getRazonSocial();
-	cuit =  String.valueOf( p.getCUILProveedor());
+	cuit =  String.valueOf( p.getCuilProveedor());
 }
 
 if (session.getAttribute("tipo")!=null)
@@ -72,7 +72,7 @@ if (session.getAttribute("vigencia")!=null)
 
 	
 %>
-<form name="form" action="./ControladorPrecios" method="POST"   onsubmit="return validar();">
+<form name="form" action="./ControladorPrecios" method="post"   onsubmit="return validar();">
 <fieldset>
 <legend>Cabecera Lista de precios</legend>
 <table>
@@ -125,7 +125,7 @@ if (session.getAttribute("vigencia")!=null)
 </form>
 <jsp:include page="lista.jsp" flush="true" />
 <br>
-<form name="form1" action="./ControladorPrecios" method="POST">
+<form name="form1" action="./ControladorPrecios" method="post">
  <input type="hidden" name="action" value="save">
  <input type="submit" name="save" value="Generar lista de precios" >
  <input type="submit" name="cancelar" value="Cancelar" onclick="return window.confirm('Esta Seguro que desea cancelar?');" >

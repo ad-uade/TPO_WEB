@@ -29,7 +29,7 @@
 							<div class="contact-form">
 								<h2 class="title text-center">Alta de Rodamiento</h2>
 								<div class="status alert alert-success" style="display: none"></div>
-								<form id="main-contact-form" class="contact-form row" name="contact-form" action="./ControladorRodamientos" method="POST" onsubmit="return validar();">
+								<form id="main-contact-form" class="contact-form row" name="contact-form" action="./ControladorRodamientos" method="post" onsubmit="return validar();">
 									
 									<div class="form-group col-md-6">
 									<p><b>Path XML</b></p>

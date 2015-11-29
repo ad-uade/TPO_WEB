@@ -44,7 +44,7 @@ function soloNumeros(evt){
 	}
 	
 	%>
-	<form name="form" action="ControladorProveedor?action=save&id=<%=p.getCUILProveedor()%>" method="post" onsubmit="return validar();">
+	<form name="form" action="ControladorProveedor?action=save&id=<%=p.getCuilProveedor()%>" method="post" onsubmit="return validar();">
 	<table>
 	<tr>
 		<td><b>Razon Social:</b></td>

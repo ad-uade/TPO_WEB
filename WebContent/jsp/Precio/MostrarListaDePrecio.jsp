@@ -23,7 +23,7 @@
 		</tr>
 		<tr>
 			<td><b>Proveedor</b></td>
-			<td><%="CUIL: " + lp.getProveedor().getCUILProveedor() + "- R.Social: "
+			<td><%="CUIL: " + lp.getProveedor().getCuilProveedor() + "- R.Social: "
 					+ lp.getProveedor().getRazonSocial()%></td>
 		</tr>
 		<tr>

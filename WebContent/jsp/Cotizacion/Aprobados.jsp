@@ -17,7 +17,7 @@
 			<td><%=it%></td>
 			<td>
 				<form name="deleteForm" action="./ControladorCotizacion"
-					method="POST">
+					method="post">
 					<input type="submit" value="Eliminar"> <input type="hidden"
 						name="delindex" value='<%=i%>'> <input type="hidden"
 						name="action" value="DesaprobarItem">

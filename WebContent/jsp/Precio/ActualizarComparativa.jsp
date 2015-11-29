@@ -3,7 +3,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"    pageEncoding="ISO-8859-1"%>
 <%@ include file="../../header.html"%>
 <body>
-<form name="form4" action="./ControladorPrecios" method="POST">
+<form name="form4" action="./ControladorPrecios" method="post">
 <fieldset>
 <legend>Seleccione la lista de precio</legend>
 	<select name="listado">
