@@ -43,21 +43,21 @@
 								<form id="main-contact-form" class="contact-form row" name="contact-form" action="./ControladorCliente" method="post" onsubmit="return validar();">
 									<div class="form-group col-md-6">
 										<input type="text" name="razonSocial" class="form-control"
-											required="required" placeholder="Razon Social">
+											required="required" placeholder="Razon Social"></input>
 									</div>
 									<div class="form-group col-md-6">
 										<input type="text" onkeypress="return soloNumeros(event)"
 											name="CuilCliente" class="form-control" required="required"
-											placeholder="CUIL">
+											placeholder="CUIL"></input>
 									</div>
 									<div class="form-group col-md-12">
 										<input type="text" name="direccion" class="form-control"
-											required="required" placeholder="Direccion">
+											required="required" placeholder="Direccion"></input>
 									</div>
 									<div class="form-group col-md-12">
 										<input type="text" onkeypress="return soloNumeros(event)"
 											name="telefono" class="form-control" required="required"
-											placeholder="Telefono">
+											placeholder="Telefono"></input>
 									</div>
 									<div class="form-group col-md-6">
 										<select name="listadoOficinas">
@@ -77,8 +77,8 @@
 										</select>
 									</div>
 									<div class="form-group col-md-12">
-										<input type="hidden" name="action" value="altaCliente">
-										<input type="submit" name="submit" class="btn btn-primary pull-right" value="Dar de alta">
+										<input type="hidden" name="action" value="altaCliente"></input>
+										<input type="submit" name="submit" class="btn btn-primary pull-right" value="Dar de alta"></input>
 									</div>
 								</form>
 							</div>

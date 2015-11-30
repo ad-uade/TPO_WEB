@@ -54,6 +54,5 @@ function soloNumeros(evt){
 	 <input type="submit" name="f3Cancelar" value="Cancelar" onclick="return window.confirm('Esta Seguro que desea cancelar?');" >
 	 <br>
 </form>
-<a href="index.html" target="_self">Volver al index</a>
 </body>
 <%@ include file="../../footer.html"%>

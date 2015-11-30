@@ -29,7 +29,7 @@ public class ControladorOrdenCompras extends HttpServlet {
 			throws ServletException, IOException {
 		session = request.getSession();
 		String action = request.getParameter("action");
-		String jspPage = "/index.html";
+		String jspPage = "/index.jsp";
 
 		if (request.getParameter("cancelar4") != null) {
 			action = "default";
@@ -56,7 +56,7 @@ public class ControladorOrdenCompras extends HttpServlet {
 		}
 
 		if ("default".equals(action)) {
-			jspPage = "/index.html";
+			jspPage = "/index.jsp";
 		}
 
 		// A partir de una OP

@@ -21,14 +21,14 @@ public class ControladorProveedor extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		String action = request.getParameter("action");
-		String jspPage = "/index.html";
+		String jspPage = "/index.jsp";
 
 		if ((action == null) || (action.length() < 1)) {
 			action = "default";
 		}
 
 		if ("default".equals(action)) {
-			jspPage = "/index.html";
+			jspPage = "/index.jsp";
 		} else if ("displaylist".equals(action)) {
 			List<ProveedorVO> proveedores = new ArrayList<ProveedorVO>();
 			proveedores = AdministradorProveedor.getInstancia().getProveedores();

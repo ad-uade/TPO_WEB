@@ -21,7 +21,7 @@ public class ControladorFacturas extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
         {
             String action = request.getParameter("action");
-            String jspPage = "/index.html";
+            String jspPage = "/index.jsp";
             
             
             if(request.getParameter("cancelar4")!=null)
@@ -41,7 +41,7 @@ public class ControladorFacturas extends HttpServlet {
 
             if ("default".equals(action))
             {
-                jspPage = "/index.html";
+                jspPage = "/index.jsp";
             }
             else if ("displayFacturas".equals(action))
             {

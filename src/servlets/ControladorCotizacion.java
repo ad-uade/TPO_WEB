@@ -31,11 +31,10 @@ public class ControladorCotizacion extends HttpServlet {
 	private HttpSession session;
 
 	@SuppressWarnings({ "unchecked" })
-	protected void doPost(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		session = request.getSession();
 		String action = request.getParameter("action");
-		String jspPage = "/index.html";
+		String jspPage = "/index.jsp";
 
 		if (request.getParameter("f2Confirmar") != null) {
 			action = "save";
@@ -66,7 +65,7 @@ public class ControladorCotizacion extends HttpServlet {
 		}
 
 		if ("default".equals(action)) {
-			jspPage = "/index.html";
+			jspPage = "/index.jsp";
 		} else if ("displaysolicitudes".equals(action)) {
 			popularCombos(request);
 			jspPage = "jsp/Cotizacion/GenerarSolicitud.jsp";
@@ -170,8 +169,7 @@ public class ControladorCotizacion extends HttpServlet {
 			String[] stringRodamiento = roda.split("/");
 			Integer cantidad = Integer.valueOf(request.getParameter("cantidad"));
 			Integer condicion = Integer.valueOf(request.getParameter("listadoC"));
-			RodamientoVO unR = AdministradorCotizacion.getInstancia().getRodamiento(stringRodamiento[0],
-					stringRodamiento[1]);
+			RodamientoVO unR = AdministradorCotizacion.getInstancia().getRodamiento(stringRodamiento[0], stringRodamiento[1]);
 			CondicionVentaVO cond = AdministradorCotizacion.getInstancia().getCondicion(condicion);
 			if (items == null && cantidades == null && condiciones == null) {
 				items = new ArrayList<RodamientoVO>();

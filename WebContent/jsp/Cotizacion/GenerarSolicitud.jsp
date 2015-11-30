@@ -1,55 +1,49 @@
 <%@page import="com.group7.business.CondicionVentaVO"%>
-<%@ page session="true" %>
+<%@ page session="true"%>
 <%@page import="com.group7.business.RodamientoVO"%>
 <%@page import="com.group7.business.ClienteVO"%>
-<%@ page import= "java.util.*"%>
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"    pageEncoding="ISO-8859-1"%>
-<%@ include file="../../header.html"%>	
+<%@ page import="java.util.*"%>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+	pageEncoding="ISO-8859-1"%>
+<%@ include file="../../header.html"%>
 <script type="text/javascript">
-function validar(){
-	if(document.form1.cantidad.value==''){
-		alert('El campo cantidad esta vacio');
-		document.form1.cantidad.focus();
-		return false;
+	function validar() {
+		if (document.form1.cantidad.value == '') {
+			alert('El campo cantidad esta vacio');
+			document.form1.cantidad.focus();
+			return false;
+		}
+		if (document.form1.clienteid.value == '') {
+			alert('El campo clienteid esta vacio');
+			document.form1.clienteid.focus();
+			return false;
+		}
 	}
-	if(document.form1.clienteid.value==''){
-		alert('El campo clienteid esta vacio');
-		document.form1.clienteid.focus();
-		return false;
-	}
-}
 
-function soloNumeros(evt){
-	if(window.event){
-		keynum = evt.keyCode;
-	}else{
-		keynum = evt.which;
+	function soloNumeros(evt) {
+		if (window.event) {
+			keynum = evt.keyCode;
+		} else {
+			keynum = evt.which;
+		}
+		if (keynum > 47 && keynum < 58) {
+			return true;
+		} else {
+			return false;
+		}
 	}
-	if(keynum>47 && keynum<58){
-		return true;
-	}else{
-		return false;
-	}
-}
 </script>
-</head>
 <body>
-<% 
+	<%
+		String cliente = "";
+		String cuit = "";
+		if (session.getAttribute("clienteSeleccionado") != null) {
+			ClienteVO c = (ClienteVO) session.getAttribute("clienteSeleccionado");
 
-String cliente="";
-String cuit ="";
-if( session.getAttribute("clienteSeleccionado")!=null)
-{
-	ClienteVO c = (ClienteVO) session.getAttribute("clienteSeleccionado");
-	
-	cliente =c.getRazonSocial();
-	cuit =  String.valueOf( c.getCuilCliente());
-}
-	
-%>
-
-<br>
-
+			cliente = c.getRazonSocial();
+			cuit = String.valueOf(c.getCuilCliente());
+		}
+	%>
 <form name="form1" action="./ControladorCotizacion" method="post"  onsubmit="return validar();">
 <fieldset>
 <legend>Cabecera Solicitud Cotizacion</legend>
@@ -114,14 +108,17 @@ if( session.getAttribute("clienteSeleccionado")!=null)
 	 <input type="submit" name="Submit" value="Agregar item"><br>
 </fieldset>
 </form>	
-<jsp:include page="Carrito.jsp" flush="true" />
-<br>
-<form name="form2" action="./ControladorCotizacion" method="post">
+	<jsp:include page="Carrito.jsp" flush="true" />
 
- <input type="hidden" name="action" value="save">
- <input type="submit" name="f2Confirmar" value="Confirmar solicitud" >
- <input type="submit" name="f2Cancelar" value="Cancelar" onclick="return window.confirm('Esta Seguro que desea cancelar?');" >
- </form>
-<a href="index.html" target="_self">Volver al index</a>
+	<form class="contact-form row" name="form2" action="./ControladorCotizacion" method="post">
+		<div class="form-group col-md-12">
+			<input class="btn btn-primary pull-right" type="submit" name="f2Confirmar" value="Confirmar solicitud"></input>
+			<input type="hidden" name="action" value="save"></input> 
+		</div>
+		<div class="form-group col-md-12">
+			<input class="btn btn-primary pull-right" type="submit" name="f2Cancelar" value="Cancelar" onclick="return window.confirm('Esta Seguro que desea cancelar?');"></input>
+		</div>
+	</form>	
+</div>		
 </body>
 <%@ include file="../../footer.html"%>

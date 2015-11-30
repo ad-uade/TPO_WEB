@@ -45,7 +45,6 @@ function soloNumerosYPunto(evt){
 	}
 }
 </script>
-</head>
 <body>
 <% 
 
@@ -72,7 +71,7 @@ if (session.getAttribute("vigencia")!=null)
 
 	
 %>
-<form name="form" action="./ControladorPrecios" method="post"   onsubmit="return validar();">
+<form name="form" action="./ControladorPrecios" method="post" onsubmit="return validar();">
 <fieldset>
 <legend>Cabecera Lista de precios</legend>
 <table>
