@@ -1,10 +1,15 @@
 <%@page import="com.group7.business.RodamientoVO"%>
 <%@page import="com.group7.business.CondicionVentaVO"%>
+<%@page import="com.group7.business.ItemSolicitudCotizacionVO"%>
 <%@ page import= "java.util.*"%>
 <%
+
  List<RodamientoVO> items = (List<RodamientoVO>) session.getAttribute("items");
  List<Integer> cantidades= (List<Integer>) session.getAttribute("cantidades");
  List<CondicionVentaVO> condiciones= (List<CondicionVentaVO>) session.getAttribute("condiciones");
+ 
+ List<ItemSolicitudCotizacionVO> listadoItems = (List<ItemSolicitudCotizacionVO>) session.getAttribute("listadoItems");
+ 
  if (items != null && (items.size() > 0) && cantidades != null && (cantidades.size() > 0) && condiciones != null && (condiciones.size() > 0)) {
 %> 
 <center>

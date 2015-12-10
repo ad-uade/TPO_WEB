@@ -43,7 +43,7 @@ public class AdministradorCliente {
 
 	public ClienteVO getCliente(Long cuil) {
 		try {
-			return oficinaVentas.traerCliente(cuil);
+			return oficinaVentas.buscarCliente(cuil);
 		} catch (RemoteException e) {
 			e.printStackTrace();
 		}
@@ -58,13 +58,12 @@ public class AdministradorCliente {
 		}
 	}
 
-	public boolean alta(Long cuil, String razonSocial, String direccion, String telefono, OficinaVentasVO of) {
+	public void alta(ClienteVO clientevo) {
 		try {
-			return oficinaVentas.altaCliente(razonSocial, cuil, direccion, telefono, of);
+			oficinaVentas.altaCliente(clientevo);
 		} catch (RemoteException e) {
 			e.printStackTrace();
 		}
-		return false;
 	}
 
 	public void baja(ClienteVO c) {

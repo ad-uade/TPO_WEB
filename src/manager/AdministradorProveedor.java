@@ -59,13 +59,12 @@ public class AdministradorProveedor
 		}
 	}
 	
-	public  boolean alta(Long cuil, String razonSocial, String direccion, String telefono) {
+	public void alta(Long cuil, String razonSocial, String direccion, String telefono) {
 		try {
-			return cpr.altaProveedor(razonSocial, cuil, direccion, telefono);
+			cpr.altaProveedor(razonSocial, cuil, direccion, telefono);
 		} catch (RemoteException e) {
 			e.printStackTrace();
 		}
-		return false;
 	}
 
 	public  void baja(ProveedorVO c) {

@@ -55,8 +55,8 @@ public class ControladorRemitos extends HttpServlet {
             else if ("efectuarRemito".equals(action)){
             	Integer nro = Integer.valueOf(request.getParameter("listado"));
             	OrdenPedidoVO op = AdministradorRemitos.getInstancia().getOrdenPedido(nro);
-            	boolean bandera = AdministradorRemitos.getInstancia().generarRemito(op);
-                request.setAttribute("bandera", bandera); 
+            	AdministradorRemitos.getInstancia().generarRemito(op);
+                request.setAttribute("bandera", true); 
                 jspPage = "jsp/Generales/Resultado.jsp";    
             }
             else if ("show".equals(action)){

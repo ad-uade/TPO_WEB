@@ -70,8 +70,8 @@ public class ControladorProveedor extends HttpServlet {
 			String razonSocial = request.getParameter("razonSocial");
 			String direccion = request.getParameter("direccion");
 			String telefono = request.getParameter("telefono");
-			boolean bandera = AdministradorProveedor.getInstancia().alta(cuil, razonSocial, direccion, telefono);
-			request.setAttribute("bandera", bandera);
+			AdministradorProveedor.getInstancia().alta(cuil, razonSocial, direccion, telefono);
+			request.setAttribute("bandera", true);
 			jspPage = "jsp/Generales/Resultado.jsp";
 		} else if ("save".equals(action)) {
 			Long id = Long.valueOf(request.getParameter("id"));

@@ -3,7 +3,6 @@
 	<name>GROUP7_WEB</name>
 	<comment>NO_M2ECLIPSE_SUPPORT: Project files created with the maven-eclipse-plugin are not supported in M2Eclipse.</comment>
 	<projects>
-		<project>GROUP7_REPO</project>
 	</projects>
 	<buildSpec>
 		<buildCommand>

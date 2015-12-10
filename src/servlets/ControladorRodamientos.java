@@ -57,8 +57,7 @@ public class ControladorRodamientos extends HttpServlet {
 						descripcion = getValue("Descripcion", element);
 						paisorigen = getValue("PaisOrigen", element);
 						marca = getValue("Marca", element);
-						AdministradorRodamientos.getInstancia().alta(codigosfk, codigopieza, descripcion, paisorigen,
-								marca, estado);
+						AdministradorRodamientos.getInstancia().alta(codigosfk, codigopieza, descripcion, paisorigen, marca, estado);
 					}
 				}
 			} catch (Exception ex) {

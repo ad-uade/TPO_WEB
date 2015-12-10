@@ -42,9 +42,15 @@ public class ControladorCliente extends HttpServlet {
 			String razonSocial = request.getParameter("razonSocial");
 			String direccion = request.getParameter("direccion");
 			String telefono = request.getParameter("telefono");
+			ClienteVO clienteVO = new ClienteVO();
+			clienteVO.setCuilCliente(cuil);
+			clienteVO.setDireccion(direccion);
+			clienteVO.setTelefono(telefono);
+			clienteVO.setRazonSocial(razonSocial);
 			OficinaVentasVO of = AdministradorCliente.getInstancia().getOficina(nro);
-			boolean bandera = AdministradorCliente.getInstancia().alta(cuil, razonSocial, direccion, telefono, of);
-			request.setAttribute("bandera", bandera);
+			clienteVO.setODV(of);
+			AdministradorCliente.getInstancia().alta(clienteVO);
+			request.setAttribute("bandera", true);
 			ClienteVO c = AdministradorCliente.getInstancia().getCliente(cuil);
 			request.setAttribute("cliente", c);
 			jspPage = "jsp/Cliente/Mostrar.jsp";

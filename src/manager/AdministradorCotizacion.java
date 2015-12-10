@@ -37,21 +37,20 @@ public class AdministradorCotizacion
 		}
 	}
 	
-	public  void guardarSolicitudCotizacion(ClienteVO cliente, List<RodamientoVO> rodamientos, List<Integer> cantidades, List<CondicionVentaVO> condiciones) {
+	public  void guardarSolicitudCotizacion(SolicitudCotizacionVO solicitudCotizacionVO) {
 		try {
-			oficinaVentas.guardarSolicitudCotizacion(cliente, rodamientos, cantidades, condiciones);
+			oficinaVentas.guardarSolicitudCotizacion(solicitudCotizacionVO);
 		} catch (RemoteException e) {
 			e.printStackTrace();
 		}
 	}
 	
-	public  boolean generarSolicitud(SolicitudCotizacionVO sc, Integer diasValidez) {
+	public void generarSolicitud(SolicitudCotizacionVO sc, Integer diasValidez) {
 		try {
-			return oficinaVentas.generarCotizacion(sc, diasValidez);
+			oficinaVentas.generarCotizacion(sc, diasValidez);
 		} catch (RemoteException e) {
 			e.printStackTrace();
 		}
-		return false;
 	}
 	
 	public  RodamientoVO getRodamiento(String SFK, String codigo) {
@@ -111,7 +110,7 @@ public class AdministradorCotizacion
 	
 	public List<CondicionVentaVO> getCondiciones() {
 		try {
-			return oficinaVentas.condiciones();
+			return oficinaVentas.buscarCondiciones();
 		} catch (RemoteException e) {
 			e.printStackTrace();
 		}

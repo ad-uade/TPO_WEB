@@ -15,6 +15,7 @@ import com.group7.business.ClienteVO;
 import com.group7.business.CondicionVentaVO;
 import com.group7.business.CotizacionVO;
 import com.group7.business.ItemCotizacionVO;
+import com.group7.business.ItemSolicitudCotizacionVO;
 import com.group7.business.RodamientoVO;
 import com.group7.business.SolicitudCotizacionVO;
 
@@ -24,6 +25,8 @@ import manager.AdministradorCotizacion;
 public class ControladorCotizacion extends HttpServlet {
 
 	private static final long serialVersionUID = 1087702007634924546L;
+	
+	private List<ItemSolicitudCotizacionVO> listadoItems;
 	private List<RodamientoVO> items;
 	private List<CondicionVentaVO> condiciones;
 	private List<String> itemsElegidos;
@@ -52,8 +55,7 @@ public class ControladorCotizacion extends HttpServlet {
 		} else if (request.getParameter("f3Cancelar") != null) {
 			action = "default";
 		} else if (request.getParameter("validarCotizacion") != null) {
-			CotizacionVO c = AdministradorCotizacion.getInstancia()
-					.getCotizacion(Integer.valueOf(request.getParameter("nrocotizacion")));
+			CotizacionVO c = AdministradorCotizacion.getInstancia().getCotizacion(Integer.valueOf(request.getParameter("nrocotizacion")));
 			session.setAttribute("cotizacionSeleccionada", c);
 			action = "displaycotizacion";
 		} else if (request.getParameter("f4Cancelar") != null) {
@@ -72,7 +74,6 @@ public class ControladorCotizacion extends HttpServlet {
 		} else if ("displaycotizacion".equals(action)) {
 			jspPage = "jsp/Cotizacion/AprobarCotizacion.jsp";
 		} else if ("displaysolicitud".equals(action)) {
-
 			Integer nro = Integer.valueOf(request.getParameter("listado"));
 			SolicitudCotizacionVO sc = AdministradorCotizacion.getInstancia().getSolicitudCotizacion(nro);
 			request.setAttribute("sc", sc);
@@ -84,7 +85,6 @@ public class ControladorCotizacion extends HttpServlet {
 			cotizaciones = AdministradorCotizacion.getInstancia().getSolicitudesCotizacion();
 			request.setAttribute("solicitudes", cotizaciones);
 			jspPage = "jsp/Cotizacion/GenerarCotizacion.jsp";
-
 		}
 
 		else if ("generarCotizacion".equals(action)) {
@@ -122,8 +122,7 @@ public class ControladorCotizacion extends HttpServlet {
 							it.setNroCotizacion(c.getNroCotizacion());
 							it.setProveedor(c.getItems().get(j).getProveedor());
 							it.setPrecio(c.getItems().get(j).getPrecio());
-							if (c.getItems().get(j).getRodamiento().getCodigoSFK().equals(stringRodamiento[0]) && c
-									.getItems().get(j).getRodamiento().getCodigoPieza().equals(stringRodamiento[1])) {
+							if (c.getItems().get(j).getRodamiento().getCodigoSFK().equals(stringRodamiento[0]) && c.getItems().get(j).getRodamiento().getCodigoPieza().equals(stringRodamiento[1])) {
 								it.setEstado("Aprobado");
 							} else {
 								it.setEstado("No Aprobado");
@@ -139,10 +138,14 @@ public class ControladorCotizacion extends HttpServlet {
 
 		} else if ("save".equals(action)) {
 			ClienteVO c = (ClienteVO) session.getAttribute("clienteSeleccionado");
+			SolicitudCotizacionVO solicitudCotizacionVO = new SolicitudCotizacionVO();
+			solicitudCotizacionVO.setCliente(c);
+			solicitudCotizacionVO.setOficinaVentasVO(c.getODV());
+			solicitudCotizacionVO.setItems((List<ItemSolicitudCotizacionVO>) session.getAttribute("listadoItems"));
+			
 			if (c != null && items != null) {
 				if (items.size() > 0) {
-					AdministradorCotizacion.getInstancia().guardarSolicitudCotizacion(c, items, cantidades,
-							condiciones);
+					AdministradorCotizacion.getInstancia().guardarSolicitudCotizacion(solicitudCotizacionVO);
 					cerrar();
 					request.setAttribute("bandera", true);
 				}
@@ -158,7 +161,7 @@ public class ControladorCotizacion extends HttpServlet {
 			condiciones.remove(d);
 			session.setAttribute("items", items);
 			session.setAttribute("cantidades", cantidades);
-			session.setAttribute("condiciones", condiciones);
+			session.setAttribute("listadoItems", listadoItems);
 			popularCombos(request);
 			jspPage = "jsp/Cotizacion/GenerarSolicitud.jsp";
 
@@ -171,6 +174,12 @@ public class ControladorCotizacion extends HttpServlet {
 			Integer condicion = Integer.valueOf(request.getParameter("listadoC"));
 			RodamientoVO unR = AdministradorCotizacion.getInstancia().getRodamiento(stringRodamiento[0], stringRodamiento[1]);
 			CondicionVentaVO cond = AdministradorCotizacion.getInstancia().getCondicion(condicion);
+			
+			List<ItemSolicitudCotizacionVO> listItemSolicitudCotizacionVO = (List<ItemSolicitudCotizacionVO>)session.getAttribute("listadoItems");
+			if (listItemSolicitudCotizacionVO == null){
+				listItemSolicitudCotizacionVO = new ArrayList<ItemSolicitudCotizacionVO>();
+			}
+			
 			if (items == null && cantidades == null && condiciones == null) {
 				items = new ArrayList<RodamientoVO>();
 				cantidades = new ArrayList<Integer>();
@@ -180,23 +189,41 @@ public class ControladorCotizacion extends HttpServlet {
 				condiciones.add(cond);
 			} else {
 				for (int i = 0; i < items.size(); i++) {
-					RodamientoVO ro = (RodamientoVO) items.get(i);
+//					RodamientoVO ro = (RodamientoVO) items.get(i);
+//					Integer cant = (Integer) cantidades.get(i);
+//					if (ro.getCodigoPieza().equals(unR.getCodigoPieza()) && (ro.getCodigoSFK().equals(unR.getCodigoSFK()))) {
+//						cantidades.set(i, cant + cantidad);
+//						condiciones.set(i, cond);
+//						existe = true;
+//					}
 					Integer cant = (Integer) cantidades.get(i);
-					if (ro.getCodigoPieza().equals(unR.getCodigoPieza())
-							&& (ro.getCodigoSFK().equals(unR.getCodigoSFK()))) {
-						cantidades.set(i, cant + cantidad);
-						condiciones.set(i, cond);
-						existe = true;
+					for (ItemSolicitudCotizacionVO item : listItemSolicitudCotizacionVO){
+						if (item.getRodamiento().getCodigoPieza().equals(unR.getCodigoPieza()) && (item.getRodamiento().getCodigoSFK().equals(unR.getCodigoSFK()))) {
+							Integer nuevoTotal = item.getCantidad() + cant;
+							item.setCantidad(nuevoTotal);
+							item.setCondicion(cond);
+							// Lo quito de la lista
+							listItemSolicitudCotizacionVO.remove(item);
+							// Lo actualizo con los nuevos valores.
+							listItemSolicitudCotizacionVO.add(item);
+							existe = true;
+						}
 					}
 				}
 				if (!existe) {
-					items.add(unR);
-					cantidades.add(cantidad);
-					condiciones.add(cond);
+					ItemSolicitudCotizacionVO itemSolicitudCotizacionVO = new ItemSolicitudCotizacionVO();
+					itemSolicitudCotizacionVO.setCantidad(cantidad);
+					itemSolicitudCotizacionVO.setRodamiento(unR);
+					itemSolicitudCotizacionVO.setCondicion(cond);
+					listItemSolicitudCotizacionVO.add(itemSolicitudCotizacionVO);
+//					items.add(unR);
+//					cantidades.add(cantidad);
+//					condiciones.add(cond);
 				}
 			}
 			session.setAttribute("items", items);
 			session.setAttribute("cantidades", cantidades);
+			session.setAttribute("condiciones", condiciones);
 			session.setAttribute("condiciones", condiciones);
 			popularCombos(request);
 			jspPage = "jsp/Cotizacion/GenerarSolicitud.jsp";
@@ -234,7 +261,6 @@ public class ControladorCotizacion extends HttpServlet {
 			cantidades.clear();
 			condiciones.clear();
 			session.invalidate();
-
 		}
 
 	}
@@ -248,8 +274,7 @@ public class ControladorCotizacion extends HttpServlet {
 		request.setAttribute("condiciones", condiciones);
 	}
 
-	protected void dispatch(String jsp, HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
+	protected void dispatch(String jsp, HttpServletRequest request, HttpServletResponse response)throws ServletException, IOException {
 		if (jsp != null) {
 			RequestDispatcher rd = request.getRequestDispatcher(jsp);
 			rd.forward(request, response);
@@ -260,6 +285,20 @@ public class ControladorCotizacion extends HttpServlet {
 			throws ServletException, IOException {
 		System.out.println(request.toString());
 		doPost(request, response);
+	}
+
+	/**
+	 * @return the itemSolicitudCotizacionVO
+	 */
+	public List<ItemSolicitudCotizacionVO> getItemSolicitudCotizacionVO() {
+		return listadoItems;
+	}
+
+	/**
+	 * @param itemSolicitudCotizacionVO the itemSolicitudCotizacionVO to set
+	 */
+	public void setItemSolicitudCotizacionVO(List<ItemSolicitudCotizacionVO> itemSolicitudCotizacionVO) {
+		this.listadoItems = itemSolicitudCotizacionVO;
 	}
 
 }

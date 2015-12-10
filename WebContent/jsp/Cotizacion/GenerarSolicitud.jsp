@@ -39,7 +39,6 @@
 		String cuit = "";
 		if (session.getAttribute("clienteSeleccionado") != null) {
 			ClienteVO c = (ClienteVO) session.getAttribute("clienteSeleccionado");
-
 			cliente = c.getRazonSocial();
 			cuit = String.valueOf(c.getCuilCliente());
 		}

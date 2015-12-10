@@ -52,12 +52,11 @@ public class AdministradorRemitos
 		return null;
 	}
 
-	public boolean generarRemito(OrdenPedidoVO op) {
+	public void generarRemito(OrdenPedidoVO op) {
 		try{
-			return cpr.revisarOrdenDePedido(op);
+			cpr.revisarOrdenDePedido(op);
 		}catch(RemoteException e){
 			e.printStackTrace();
 		}
-		return false;
 	}
 }
