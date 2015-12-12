@@ -2,6 +2,7 @@ package servlets;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
@@ -15,7 +16,6 @@ import com.group7.business.ClienteVO;
 import com.group7.business.CondicionVentaVO;
 import com.group7.business.CotizacionVO;
 import com.group7.business.ItemCotizacionVO;
-import com.group7.business.ItemSolicitudCotizacionVO;
 import com.group7.business.RodamientoVO;
 import com.group7.business.SolicitudCotizacionVO;
 
@@ -26,11 +26,7 @@ public class ControladorCotizacion extends HttpServlet {
 
 	private static final long serialVersionUID = 1087702007634924546L;
 	
-	private List<ItemSolicitudCotizacionVO> listadoItems;
-	private List<RodamientoVO> items;
-	private List<CondicionVentaVO> condiciones;
-	private List<String> itemsElegidos;
-	private List<Integer> cantidades;
+	private SolicitudCotizacionVO solicitudCotizacionVO;
 	private HttpSession session;
 
 	@SuppressWarnings({ "unchecked" })
@@ -103,8 +99,7 @@ public class ControladorCotizacion extends HttpServlet {
 		} else if ("cancelf4".equals(action)) {
 			if (session != null) {
 				session.invalidate();
-				itemsElegidos.clear();
-
+				solicitudCotizacionVO = null;
 			}
 		} else if ("aprobarSolicitud".equals(action)) {
 			List<String> listaItems = (List<String>) session.getAttribute("itemsElegidos");
@@ -138,118 +133,55 @@ public class ControladorCotizacion extends HttpServlet {
 
 		} else if ("save".equals(action)) {
 			ClienteVO c = (ClienteVO) session.getAttribute("clienteSeleccionado");
-			SolicitudCotizacionVO solicitudCotizacionVO = new SolicitudCotizacionVO();
+			solicitudCotizacionVO = (SolicitudCotizacionVO) session.getAttribute("solicitudCotizacionVO");
 			solicitudCotizacionVO.setCliente(c);
+			solicitudCotizacionVO.setFecha(Calendar.getInstance().getTime());
 			solicitudCotizacionVO.setOficinaVentasVO(c.getODV());
-			solicitudCotizacionVO.setItems((List<ItemSolicitudCotizacionVO>) session.getAttribute("listadoItems"));
-			
-			if (c != null && items != null) {
-				if (items.size() > 0) {
-					AdministradorCotizacion.getInstancia().guardarSolicitudCotizacion(solicitudCotizacionVO);
-					cerrar();
-					request.setAttribute("bandera", true);
-				}
-			} else {
-				request.setAttribute("bandera", false);
-			}
+			AdministradorCotizacion.getInstancia().guardarSolicitudCotizacion(solicitudCotizacionVO);
+			cerrar();
+			request.setAttribute("bandera", true);
 			jspPage = "jsp/Generales/Resultado.jsp";
 		} else if ("delete".equals(action)) {
 			String del = request.getParameter("delindex");
-			int d = (new Integer(del)).intValue();
-			items.remove(d);
-			cantidades.remove(d);
-			condiciones.remove(d);
-			session.setAttribute("items", items);
-			session.setAttribute("cantidades", cantidades);
-			session.setAttribute("listadoItems", listadoItems);
-			popularCombos(request);
+			session.setAttribute("solicitudCotizacionVO", solicitudCotizacionVO);
+			//popularCombos(request);
 			jspPage = "jsp/Cotizacion/GenerarSolicitud.jsp";
 
 		} else if ("add".equals(action)) {
 
-			boolean existe = false;
 			String roda = ((String) request.getParameter("listado"));
 			String[] stringRodamiento = roda.split("/");
-			Integer cantidad = Integer.valueOf(request.getParameter("cantidad"));
-			Integer condicion = Integer.valueOf(request.getParameter("listadoC"));
-			RodamientoVO unR = AdministradorCotizacion.getInstancia().getRodamiento(stringRodamiento[0], stringRodamiento[1]);
-			CondicionVentaVO cond = AdministradorCotizacion.getInstancia().getCondicion(condicion);
-			
-			List<ItemSolicitudCotizacionVO> listItemSolicitudCotizacionVO = (List<ItemSolicitudCotizacionVO>)session.getAttribute("listadoItems");
-			if (listItemSolicitudCotizacionVO == null){
-				listItemSolicitudCotizacionVO = new ArrayList<ItemSolicitudCotizacionVO>();
+			RodamientoVO rodamiento = AdministradorCotizacion.getInstancia().getRodamiento(stringRodamiento[0], stringRodamiento[1]);
+			Integer cantidad  = (Integer) session.getAttribute("cantidad");
+			solicitudCotizacionVO = (SolicitudCotizacionVO) session.getAttribute("solicitudCotizacionVO");
+			if (solicitudCotizacionVO == null){
+				solicitudCotizacionVO = new SolicitudCotizacionVO();
 			}
-			
-			if (items == null && cantidades == null && condiciones == null) {
-				items = new ArrayList<RodamientoVO>();
-				cantidades = new ArrayList<Integer>();
-				condiciones = new ArrayList<CondicionVentaVO>();
-				items.add(unR);
-				cantidades.add(cantidad);
-				condiciones.add(cond);
-			} else {
-				for (int i = 0; i < items.size(); i++) {
-//					RodamientoVO ro = (RodamientoVO) items.get(i);
-//					Integer cant = (Integer) cantidades.get(i);
-//					if (ro.getCodigoPieza().equals(unR.getCodigoPieza()) && (ro.getCodigoSFK().equals(unR.getCodigoSFK()))) {
-//						cantidades.set(i, cant + cantidad);
-//						condiciones.set(i, cond);
-//						existe = true;
-//					}
-					Integer cant = (Integer) cantidades.get(i);
-					for (ItemSolicitudCotizacionVO item : listItemSolicitudCotizacionVO){
-						if (item.getRodamiento().getCodigoPieza().equals(unR.getCodigoPieza()) && (item.getRodamiento().getCodigoSFK().equals(unR.getCodigoSFK()))) {
-							Integer nuevoTotal = item.getCantidad() + cant;
-							item.setCantidad(nuevoTotal);
-							item.setCondicion(cond);
-							// Lo quito de la lista
-							listItemSolicitudCotizacionVO.remove(item);
-							// Lo actualizo con los nuevos valores.
-							listItemSolicitudCotizacionVO.add(item);
-							existe = true;
-						}
-					}
-				}
-				if (!existe) {
-					ItemSolicitudCotizacionVO itemSolicitudCotizacionVO = new ItemSolicitudCotizacionVO();
-					itemSolicitudCotizacionVO.setCantidad(cantidad);
-					itemSolicitudCotizacionVO.setRodamiento(unR);
-					itemSolicitudCotizacionVO.setCondicion(cond);
-					listItemSolicitudCotizacionVO.add(itemSolicitudCotizacionVO);
-//					items.add(unR);
-//					cantidades.add(cantidad);
-//					condiciones.add(cond);
-				}
-			}
-			session.setAttribute("items", items);
-			session.setAttribute("cantidades", cantidades);
-			session.setAttribute("condiciones", condiciones);
-			session.setAttribute("condiciones", condiciones);
+			solicitudCotizacionVO.add(rodamiento, cantidad);
+			session.setAttribute("solicitudCotizacionVO", solicitudCotizacionVO);
 			popularCombos(request);
 			jspPage = "jsp/Cotizacion/GenerarSolicitud.jsp";
 		} else if ("DesaprobarItem".equals(action)) {
 			String del = request.getParameter("delindex");
 			int d = (new Integer(del)).intValue();
-			itemsElegidos.remove(d);
-			session.setAttribute("itemsElegidos", itemsElegidos);
 			jspPage = "jsp/Cotizacion/AprobarCotizacion.jsp";
 
 		} else if ("AprobarItem".equals(action)) {
 			boolean existe = false;
 			String roda = ((String) request.getParameter("listado"));
-			if (itemsElegidos == null) {
-				itemsElegidos = new ArrayList<String>();
-				itemsElegidos.add(roda);
-			} else {
-				for (int i = 0; i < itemsElegidos.size(); i++) {
-					String r = (String) itemsElegidos.get(i);
-					if (r.equals(roda))
-						existe = true;
-				}
-				if (!existe)
-					itemsElegidos.add(roda);
-			}
-			session.setAttribute("itemsElegidos", itemsElegidos);
+//			if (itemsElegidos == null) {
+//				itemsElegidos = new ArrayList<String>();
+//				itemsElegidos.add(roda);
+//			} else {
+//				for (int i = 0; i < itemsElegidos.size(); i++) {
+//					String r = (String) itemsElegidos.get(i);
+//					if (r.equals(roda))
+//						existe = true;
+//				}
+//				if (!existe)
+//					itemsElegidos.add(roda);
+//			}
+//			session.setAttribute("itemsElegidos", itemsElegidos);
 			jspPage = "jsp/Cotizacion/AprobarCotizacion.jsp";
 		}
 		dispatch(jspPage, request, response);
@@ -257,9 +189,6 @@ public class ControladorCotizacion extends HttpServlet {
 
 	private void cerrar() {
 		if (session != null) {
-			items.clear();
-			cantidades.clear();
-			condiciones.clear();
 			session.invalidate();
 		}
 
@@ -285,20 +214,6 @@ public class ControladorCotizacion extends HttpServlet {
 			throws ServletException, IOException {
 		System.out.println(request.toString());
 		doPost(request, response);
-	}
-
-	/**
-	 * @return the itemSolicitudCotizacionVO
-	 */
-	public List<ItemSolicitudCotizacionVO> getItemSolicitudCotizacionVO() {
-		return listadoItems;
-	}
-
-	/**
-	 * @param itemSolicitudCotizacionVO the itemSolicitudCotizacionVO to set
-	 */
-	public void setItemSolicitudCotizacionVO(List<ItemSolicitudCotizacionVO> itemSolicitudCotizacionVO) {
-		this.listadoItems = itemSolicitudCotizacionVO;
 	}
 
 }
