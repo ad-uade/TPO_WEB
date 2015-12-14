@@ -31,7 +31,7 @@
 		</tr>
 		<tr>
 			<td><b>Vinculado a la solicitud de cotizacion</b></td>
-			<td><%=c.getSolicitud().getNroSolicitudCotizacion()%></td>
+			<td><%=c.getNroSolicitudCotizacion()%></td>
 		</tr>
 		<tr>
 			<td><b>Items</b></td>

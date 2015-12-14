@@ -24,12 +24,13 @@ import manager.AdministradorCotizacion;
 public class ControladorCotizacion extends HttpServlet {
 
 	private static final long serialVersionUID = 1087702007634924546L;
-	
+
 	private SolicitudCotizacionVO solicitudCotizacionVO;
 	private HttpSession session;
 
 	@SuppressWarnings({ "unchecked" })
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		session = request.getSession();
 		String action = request.getParameter("action");
 		String jspPage = "/index.jsp";
@@ -81,21 +82,7 @@ public class ControladorCotizacion extends HttpServlet {
 			request.setAttribute("solicitudes", cotizaciones);
 			jspPage = "jsp/Cotizacion/GenerarCotizacion.jsp";
 		}
-
-		else 
-//			if ("generarCotizacion".equals(action)) {
-//			Integer diasValidez = Integer.valueOf(request.getParameter("diasValidez"));
-//			Integer nro = Integer.valueOf(request.getParameter("listado"));
-//			SolicitudCotizacionVO sc = AdministradorCotizacion.getInstancia().getSolicitudCotizacion(nro);
-//			if (diasValidez != null && sc != null) {
-//				AdministradorCotizacion.getInstancia().confirmarSolicitud(sc, diasValidez);
-//				request.setAttribute("bandera", true);
-//			} else {
-//				request.setAttribute("bandera", false);
-//			}
-//			jspPage = "jsp/Generales/Resultado.jsp";
-//		} else 
-			if ("cancel".equals(action)) {
+		else if ("cancel".equals(action)) {
 			cerrar();
 		} else if ("cancelf4".equals(action)) {
 			if (session != null) {
@@ -141,7 +128,6 @@ public class ControladorCotizacion extends HttpServlet {
 			AdministradorCotizacion.getInstancia().guardarSolicitudCotizacion(solicitudCotizacionVO);
 			cerrar();
 			request.setAttribute("bandera", true);
-			jspPage = "jsp/index.jsp";
 		} else if ("delete".equals(action)) {
 			String del = request.getParameter("delindex");
 			session.setAttribute("solicitudCotizacionVO", solicitudCotizacionVO);
@@ -151,10 +137,11 @@ public class ControladorCotizacion extends HttpServlet {
 		} else if ("add".equals(action)) {
 			String roda = ((String) request.getParameter("listado"));
 			String[] stringRodamiento = roda.split("/");
-			RodamientoVO rodamiento = AdministradorCotizacion.getInstancia().getRodamiento(stringRodamiento[0], stringRodamiento[1]);
-			Integer cantidad  = Integer.valueOf(request.getParameter("cantidad"));
+			RodamientoVO rodamiento = AdministradorCotizacion.getInstancia().getRodamiento(stringRodamiento[0],
+					stringRodamiento[1]);
+			Integer cantidad = Integer.valueOf(request.getParameter("cantidad"));
 			solicitudCotizacionVO = (SolicitudCotizacionVO) session.getAttribute("solicitudCotizacionVO");
-			if (solicitudCotizacionVO == null){
+			if (solicitudCotizacionVO == null) {
 				solicitudCotizacionVO = new SolicitudCotizacionVO();
 			}
 			solicitudCotizacionVO.add(rodamiento, cantidad);
@@ -169,19 +156,19 @@ public class ControladorCotizacion extends HttpServlet {
 		} else if ("AprobarItem".equals(action)) {
 			boolean existe = false;
 			String roda = ((String) request.getParameter("listado"));
-//			if (itemsElegidos == null) {
-//				itemsElegidos = new ArrayList<String>();
-//				itemsElegidos.add(roda);
-//			} else {
-//				for (int i = 0; i < itemsElegidos.size(); i++) {
-//					String r = (String) itemsElegidos.get(i);
-//					if (r.equals(roda))
-//						existe = true;
-//				}
-//				if (!existe)
-//					itemsElegidos.add(roda);
-//			}
-//			session.setAttribute("itemsElegidos", itemsElegidos);
+			// if (itemsElegidos == null) {
+			// itemsElegidos = new ArrayList<String>();
+			// itemsElegidos.add(roda);
+			// } else {
+			// for (int i = 0; i < itemsElegidos.size(); i++) {
+			// String r = (String) itemsElegidos.get(i);
+			// if (r.equals(roda))
+			// existe = true;
+			// }
+			// if (!existe)
+			// itemsElegidos.add(roda);
+			// }
+			// session.setAttribute("itemsElegidos", itemsElegidos);
 			jspPage = "jsp/Cotizacion/AprobarCotizacion.jsp";
 		}
 		dispatch(jspPage, request, response);
@@ -199,7 +186,8 @@ public class ControladorCotizacion extends HttpServlet {
 		request.setAttribute("rodamientos", rodamientos);
 	}
 
-	protected void dispatch(String jsp, HttpServletRequest request, HttpServletResponse response)throws ServletException, IOException {
+	protected void dispatch(String jsp, HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		if (jsp != null) {
 			RequestDispatcher rd = request.getRequestDispatcher(jsp);
 			rd.forward(request, response);

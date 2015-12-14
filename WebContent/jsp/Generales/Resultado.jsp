@@ -18,6 +18,6 @@
 	%>
 </body>
 <%=successMsg %><br>
-<a href="index.html" target="_self">Volver al index</a> 
+<a href="index.jsp" target="_self">Volver al index</a> 
 
 </html>
