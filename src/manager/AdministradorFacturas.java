@@ -33,51 +33,22 @@ public class AdministradorFacturas
 			e.printStackTrace();
 		}
 	}
-	
-	public List<RemitoExteriorVO> getRemitos() {
-		try{
-			return oficinaVentas.traerRemitos();
-		}catch (RemoteException e){
-			e.printStackTrace();
-		}
-		return null;
-	}
-	
-	public List<RemitoExteriorVO> getRemitosNoConformados() {
-		try{
-			return oficinaVentas.traerRemitosNoConformados();
-		}catch (RemoteException e){
-			e.printStackTrace();
-		}
-		return null;
-	}
 
-	public RemitoExteriorVO getRemito(Integer nro) {
-		try{
-			return (RemitoExteriorVO) oficinaVentas.dameRemito(nro);
-		}catch (RemoteException e){
-			e.printStackTrace();
-		}
-		return null;
-	}
-
-	public void generarFactura(RemitoExteriorVO r) {
-		try{
-			oficinaVentas.generarFactura(r);
-		}catch (RemoteException e){
-			e.printStackTrace();
-		}
-		
-	}
-	
-	public void efectuarConformidad(Integer nro){
-		try {
-			oficinaVentas.registrarConformidadCliente(nro);
-		} catch (RemoteException e) {
-			e.printStackTrace();
-		}
-	}
-	
-   
+//	public void generarFactura(RemitoExteriorVO r) {
+//		try{
+//			oficinaVentas.generarFactura(r);
+//		}catch (RemoteException e){
+//			e.printStackTrace();
+//		}
+//		
+//	}
+//	
+//	public void efectuarConformidad(Integer nro){
+//		try {
+//			oficinaVentas.registrarConformidadCliente(nro);
+//		} catch (RemoteException e) {
+//			e.printStackTrace();
+//		}
+//	}
     
 }

@@ -13,7 +13,6 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.group7.business.ClienteVO;
-import com.group7.business.CondicionVentaVO;
 import com.group7.business.CotizacionVO;
 import com.group7.business.ItemCotizacionVO;
 import com.group7.business.RodamientoVO;
@@ -83,18 +82,20 @@ public class ControladorCotizacion extends HttpServlet {
 			jspPage = "jsp/Cotizacion/GenerarCotizacion.jsp";
 		}
 
-		else if ("generarCotizacion".equals(action)) {
-			Integer diasValidez = Integer.valueOf(request.getParameter("diasValidez"));
-			Integer nro = Integer.valueOf(request.getParameter("listado"));
-			SolicitudCotizacionVO sc = AdministradorCotizacion.getInstancia().getSolicitudCotizacion(nro);
-			if (diasValidez != null && sc != null) {
-				AdministradorCotizacion.getInstancia().generarSolicitud(sc, diasValidez);
-				request.setAttribute("bandera", true);
-			} else {
-				request.setAttribute("bandera", false);
-			}
-			jspPage = "jsp/Generales/Resultado.jsp";
-		} else if ("cancel".equals(action)) {
+		else 
+//			if ("generarCotizacion".equals(action)) {
+//			Integer diasValidez = Integer.valueOf(request.getParameter("diasValidez"));
+//			Integer nro = Integer.valueOf(request.getParameter("listado"));
+//			SolicitudCotizacionVO sc = AdministradorCotizacion.getInstancia().getSolicitudCotizacion(nro);
+//			if (diasValidez != null && sc != null) {
+//				AdministradorCotizacion.getInstancia().confirmarSolicitud(sc, diasValidez);
+//				request.setAttribute("bandera", true);
+//			} else {
+//				request.setAttribute("bandera", false);
+//			}
+//			jspPage = "jsp/Generales/Resultado.jsp";
+//		} else 
+			if ("cancel".equals(action)) {
 			cerrar();
 		} else if ("cancelf4".equals(action)) {
 			if (session != null) {
@@ -140,19 +141,18 @@ public class ControladorCotizacion extends HttpServlet {
 			AdministradorCotizacion.getInstancia().guardarSolicitudCotizacion(solicitudCotizacionVO);
 			cerrar();
 			request.setAttribute("bandera", true);
-			jspPage = "jsp/Generales/Resultado.jsp";
+			jspPage = "jsp/index.jsp";
 		} else if ("delete".equals(action)) {
 			String del = request.getParameter("delindex");
 			session.setAttribute("solicitudCotizacionVO", solicitudCotizacionVO);
-			//popularCombos(request);
+			popularCombos(request);
 			jspPage = "jsp/Cotizacion/GenerarSolicitud.jsp";
 
 		} else if ("add".equals(action)) {
-
 			String roda = ((String) request.getParameter("listado"));
 			String[] stringRodamiento = roda.split("/");
 			RodamientoVO rodamiento = AdministradorCotizacion.getInstancia().getRodamiento(stringRodamiento[0], stringRodamiento[1]);
-			Integer cantidad  = (Integer) session.getAttribute("cantidad");
+			Integer cantidad  = Integer.valueOf(request.getParameter("cantidad"));
 			solicitudCotizacionVO = (SolicitudCotizacionVO) session.getAttribute("solicitudCotizacionVO");
 			if (solicitudCotizacionVO == null){
 				solicitudCotizacionVO = new SolicitudCotizacionVO();
@@ -191,16 +191,12 @@ public class ControladorCotizacion extends HttpServlet {
 		if (session != null) {
 			session.invalidate();
 		}
-
 	}
 
 	private void popularCombos(HttpServletRequest request) {
 		List<RodamientoVO> rodamientos = new ArrayList<RodamientoVO>();
 		rodamientos = AdministradorCotizacion.getInstancia().getRodamientos();
 		request.setAttribute("rodamientos", rodamientos);
-		List<CondicionVentaVO> condiciones = new ArrayList<CondicionVentaVO>();
-		condiciones = AdministradorCotizacion.getInstancia().getCondiciones();
-		request.setAttribute("condiciones", condiciones);
 	}
 
 	protected void dispatch(String jsp, HttpServletRequest request, HttpServletResponse response)throws ServletException, IOException {

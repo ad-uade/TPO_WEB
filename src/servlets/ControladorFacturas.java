@@ -45,20 +45,20 @@ public class ControladorFacturas extends HttpServlet {
             }
             else if ("displayFacturas".equals(action))
             {
-            	List<RemitoExteriorVO> remitos = new ArrayList<RemitoExteriorVO>();
-            	remitos = AdministradorFacturas.getInstancia().getRemitos();
-            	request.setAttribute("remitos", remitos);
+//            	List<RemitoExteriorVO> remitos = new ArrayList<RemitoExteriorVO>();
+//            	remitos = AdministradorFacturas.getInstancia().getRemitos();
+//            	request.setAttribute("remitos", remitos);
 				jspPage = "jsp/Factura/GenerarF.jsp";        
             }
             else if ("efectuarFactura".equals(action)){
-            	Integer nro = Integer.valueOf(request.getParameter("listado"));
-            	RemitoExteriorVO r = AdministradorFacturas.getInstancia().getRemito(nro);
-            	AdministradorFacturas.getInstancia().generarFactura(r);
+//            	Integer nro = Integer.valueOf(request.getParameter("listado"));
+//            	RemitoExteriorVO r = AdministradorFacturas.getInstancia().getRemito(nro);
+//            	AdministradorFacturas.getInstancia().generarFactura(r);
             }
             else if ("show".equals(action)){
-            	 Integer nro = Integer.valueOf(request.getParameter("listado"));
-            	 RemitoExteriorVO c = AdministradorFacturas.getInstancia().getRemito(nro); 
- 				 request.setAttribute("remi", c);
+//            	 Integer nro = Integer.valueOf(request.getParameter("listado"));
+//            	 RemitoExteriorVO c = AdministradorFacturas.getInstancia().getRemito(nro); 
+// 				 request.setAttribute("remi", c);
                  jspPage = "jsp/Factura/MostrarRemito.jsp";
             }
             dispatch(jspPage, request, response);

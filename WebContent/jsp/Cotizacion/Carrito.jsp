@@ -1,18 +1,15 @@
 <%@page import="com.group7.business.RodamientoVO"%>
-<%@page import="com.group7.business.CondicionVentaVO"%>
+<%@page import="com.group7.business.SolicitudCotizacionVO"%>
 <%@page import="com.group7.business.ItemSolicitudCotizacionVO"%>
 <%@ page import= "java.util.*"%>
 <%
 
- List<RodamientoVO> items = (List<RodamientoVO>) session.getAttribute("items");
- List<Integer> cantidades= (List<Integer>) session.getAttribute("cantidades");
- List<CondicionVentaVO> condiciones= (List<CondicionVentaVO>) session.getAttribute("condiciones");
+ SolicitudCotizacionVO solicitud = (SolicitudCotizacionVO) session.getAttribute("solicitudCotizacionVO");
  
- List<ItemSolicitudCotizacionVO> listadoItems = (List<ItemSolicitudCotizacionVO>) session.getAttribute("listadoItems");
- 
- if (items != null && (items.size() > 0) && cantidades != null && (cantidades.size() > 0) && condiciones != null && (condiciones.size() > 0)) {
+ if (solicitud != null) {
 %> 
-<center>
+<center><p>CARRITO</p></center>
+</br>
 <table border="0" cellpadding="0" width="100%" bgcolor="#FFFFFF">
  <tr>
  <td><b>Codigo SFK</b></td>
@@ -24,10 +21,9 @@
  <td><b>Cantidad</b></td>
  </tr>
  <%
-  for (int i=0; i < items.size();i++) {
-   RodamientoVO it = (RodamientoVO) items.get(i);
-   Integer cantidad = (Integer) cantidades.get(i);
-   CondicionVentaVO cond = (CondicionVentaVO)condiciones.get(i);
+  for (ItemSolicitudCotizacionVO items: solicitud.getItems()) {
+   RodamientoVO it = (RodamientoVO) items.getRodamiento();
+   Integer cantidad = (Integer) items.getCantidad();
  %>
  <tr>
   <td><%= it.getCodigoSFK()%></td>
@@ -35,18 +31,16 @@
   <td><%= it.getDescripcion()%></td>
   <td><%= it.getMarca() %></td>
   <td><%= it.getPaisOrigen()%></td>
-  <td><%= cond.getNroCondicion()%></td>
   <td><%= cantidad%></td>
   <td>
   <form name="deleteForm" action="./ControladorCotizacion" method="post"> 
-  	<input type="submit" value="Eliminar">
-   <input type="hidden" name= "delindex" value='<%= i %>'>
-   <input type="hidden" name="action" value="delete">
+	  <input type="submit" value="Eliminar"></input>
+	   <input type="hidden" name= "delindex" value='<%= it.getCodigoSFK() %>'></input>
+	   <input type="hidden" name="action" value="delete"></input>
   </form> 
   </td>
 </tr> 
 <% } %>
 </table>
-<p>
 </center>
 <% } %>

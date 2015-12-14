@@ -80,29 +80,7 @@
 		}}
 	%>
 	</select>
-	<select name="listadoC">
-	<%
-		CondicionVentaVO aux1;
-		List<CondicionVentaVO> condiciones;
-		condiciones= (List<CondicionVentaVO>)request.getAttribute("condiciones");
-		
-		
-		if(condiciones!=null)
-		{
-		
-		for(Iterator<CondicionVentaVO> c1 =condiciones.iterator();c1.hasNext();)
-		{
-			
-			aux1 = c1.next();
-	
-	
-	%>
-		<option value="<%=aux1.getNroCondicion()%>"><%=aux1.getNroCondicion() + " Fecha desde:" + aux1.getFechaDesde() + " Fecha hasta:" + aux1.getFechaHasta()%></option>
-	<%
-		}}
-	%>
-	</select>
-	Cantidad:<input type="text" name="cantidad" SIZE="3" value=1 onkeypress="return soloNumeros(event)">
+	Cantidad:<input type="text" name="cantidad" size="3" value="1" onkeypress="return soloNumeros(event)"></input>
 	 <input type="hidden" name="action" value="add">
 	 <input type="submit" name="Submit" value="Agregar item"><br>
 </fieldset>

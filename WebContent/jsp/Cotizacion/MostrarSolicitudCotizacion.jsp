@@ -6,10 +6,10 @@
 <%@ include file="../../header.html"%>
 <body>
 	<%
-	SolicitudCotizacionVO c = (SolicitudCotizacionVO)request.getAttribute("sc");
+	SolicitudCotizacionVO c = (SolicitudCotizacionVO)request.getAttribute("solicitudCotizacionVO");
 	String items = "";
 	for (int i=0;i<c.getItems().size();i++){
-		items = items + c.getItems().get(i).getRodamiento().getDescripcion() +"\tx" + c.getItems().get(i).getCantidad() + " (CV nro: " + c.getItems().get(i).getCondicion().getNroCondicion() +  ")\n";
+		items = items + c.getItems().get(i).getRodamiento().getDescripcion() +"\tx" + c.getItems().get(i).getCantidad() + ")\n";
 	}
 	%>
 	<table>

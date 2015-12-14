@@ -5,7 +5,6 @@ import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.util.List;
 
-import com.group7.business.CondicionVentaVO;
 import com.group7.business.CotizacionVO;
 import com.group7.business.RodamientoVO;
 import com.group7.business.SolicitudCotizacionVO;
@@ -39,14 +38,6 @@ public class AdministradorCotizacion
 	public  void guardarSolicitudCotizacion(SolicitudCotizacionVO solicitudCotizacionVO) {
 		try {
 			oficinaVentas.guardarSolicitudCotizacion(solicitudCotizacionVO);
-		} catch (RemoteException e) {
-			e.printStackTrace();
-		}
-	}
-	
-	public void generarSolicitud(SolicitudCotizacionVO sc, Integer diasValidez) {
-		try {
-			oficinaVentas.generarCotizacion(sc, diasValidez);
 		} catch (RemoteException e) {
 			e.printStackTrace();
 		}
@@ -97,37 +88,12 @@ public class AdministradorCotizacion
 		return null;
 	}
 	
-	public void aprobarCotizacion (CotizacionVO cotizacion){
-		
+	public void aprobarCotizacion(CotizacionVO cotizacion){
 		try {
 			oficinaVentas.aprobarCotizacion(cotizacion);
 		} catch (RemoteException e) {
 			e.printStackTrace();
 		}
-		
 	}
 	
-	public List<CondicionVentaVO> getCondiciones() {
-		try {
-			return oficinaVentas.buscarCondiciones();
-		} catch (RemoteException e) {
-			e.printStackTrace();
-		}
-		return null;
-	}
-	
-	public CondicionVentaVO getCondicion(Integer nro){
-		try{
-			return oficinaVentas.dameCondicion(nro);
-		}catch (RemoteException e){
-			e.printStackTrace();
-		}
-		return null;
-	}
-	
-	
-
-	
-   
-    
 }
